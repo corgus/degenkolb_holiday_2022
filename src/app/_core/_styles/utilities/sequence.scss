@@ -1,0 +1,101 @@
+@import '../resources';
+
+// aligning elements with left edge of sticky icons
+.sequence-left-align-1 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+@include media(sm) {
+  .sequence-left-align-1 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// aligning elements with left edge of sticky icons container (10px left inner padding)
+.sequence-left-align-2 {
+  margin-left: 10px;
+}
+@include media(sm) {
+  .sequence-left-align-2 {
+    margin-left: -10px;
+  }
+}
+
+// aligning elements with left edge of sticky icons container, removing for sm windows
+.sequence-left-align-3 {
+  margin-left: 10px;
+}
+@include media(sm) {
+  .sequence-left-align-3 {
+    margin-left: 0;
+  }
+}
+
+
+.sequence-left-bar-container {
+  position: absolute;
+  width: $stickyColumnWidth;
+  height: 100%;
+  z-index: 1;
+}
+
+.sequence-section-title-container {
+  position: relative;
+  // background: $cBgBase;
+  padding: 4px 0;
+  z-index: 2;
+}
+
+
+.sequence-section-content-container {
+  padding-bottom: 35px;
+  background: white;
+  border-top: 1px solid $cBorderA;
+  border-bottom: 1px solid $cBorderA;
+}
+
+%sequence-section-title {
+  position: relative; // absolute;
+  display: inline-block;
+  font-weight: 700;
+  font-size: $fontSizeH4;
+  padding-left: 16px; // 60px;
+  vertical-align: top;
+}
+
+.sequence-section-title--active {
+  @extend %sequence-section-title;
+  color: $cBlack4Opaque;
+}
+.sequence-section-title--inactive {
+  @extend %sequence-section-title;
+  color: $cTextLight1;// $cBlack6Opaque;
+}
+
+.sequence-section-expand {
+  margin-left: 10px;
+  font-size: 85%;
+}
+
+.sequence-section-link {
+  display: inline-block;
+  cursor: pointer;
+  // width: 100%;
+  position: relative;
+
+  &:hover .sequence-section-title--inactive {
+    color: $cBlack4Opaque;
+  }
+
+  &:hover .sequence-section-icon {
+    background-color: $cBlack4Opaque;
+  }
+}
+
+// .sequence-form-control-row {
+//   margin-top: 30px;
+//   padding-top: 30px;
+//   // padding-bottom: 30px;
+//   border-top: 1px solid $cBorderA;
+// }

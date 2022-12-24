@@ -1,0 +1,94 @@
+@import '../resources';
+
+.popup-title { width: 95%; }
+@include media(sm) { .popup-title { width: 85%; } }
+
+.popup-title-icon {
+  display: inline-block;
+  padding-right: 5px;
+  color: $cBlack4;
+  font-size: 14px; // 80%;
+  vertical-align: bottom;
+  padding-bottom: 4px;
+}
+
+.popup-content-min-width { min-width: 450px; }
+@include media(sm) { .popup-content-min-width { min-width: 260px; } }
+
+
+.popup-menu-ul {
+  margin-top: 0;
+  margin-left: -($popupPaddingLeft);
+  margin-right: -($popupPaddingRight);
+  margin-bottom: -($popupPaddingBottom);
+}
+
+.popup-menu-after {
+  margin-top: $popupPaddingTop;
+}
+
+.popup-menu-wrapper {
+  margin-left: -($popupPaddingLeft);
+  margin-right: -($popupPaddingRight);
+}
+
+.popup-wrapper { @extend %popup-wrapper; }
+
+.popup-container { @extend %popup-container; }
+
+.popup-content { @extend %popup-content; }
+
+// .popup-menu-border { border: $popupMenuBorder; }
+.popup-menu-border-top { border-top: $popupMenuBorder; }
+.popup-menu-border-bottom { border-bottom: $popupMenuBorder; }
+
+
+//
+// MODAL
+//
+
+
+.item-modal-association-container {
+  padding: 30px;
+}
+
+
+.modal-map-container.map-is-opening {
+  .modal-map-shroud {
+    opacity: 0;
+  }
+}
+
+
+.modal-map-container.map-is-open {
+  border-radius: $borderRadiusModal;
+  box-shadow: 0 0 0 -1px rgba(0,0,0,0);
+
+  .modal-map-shroud {
+    display: none;
+  }
+
+  .modal-map {
+    box-shadow: $boxShadowPopup;
+  }
+
+  .modal-map-bottom {
+    height: 0;
+  }
+}
+
+.popup-container-wide {
+  width: 500px;
+}
+
+@include media(sm) {
+  .item-modal-association-container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .popup-container-wide {
+    width: 300px;
+  }
+}
+

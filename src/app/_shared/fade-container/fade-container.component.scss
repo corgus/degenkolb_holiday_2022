@@ -1,0 +1,17 @@
+@import '../../_core/_styles/resources';
+
+:host {
+  // display: block;
+  // letter-spacing: 0.6px;
+  // font-size: $fontSizeSmall;
+  // font-weight: 300;
+}
+
+.fade-container {
+  opacity: 0;
+
+  &.transition-1 { transition: all ease 150ms; }
+  &.transition-2 { transition: all ease 300ms; }
+
+  &.opacity-1 { opacity: 1; }
+}

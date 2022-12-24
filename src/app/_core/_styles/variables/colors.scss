@@ -1,0 +1,225 @@
+//
+// OPAQUE
+//
+
+// 0267A5 60%
+
+$cBlueBase: #0584BC;
+$cBlueLight2: lighten($cBlueBase, 20%);
+$cBlueLight1: lighten($cBlueBase, 3%); // 8% - #0584BC; //
+
+$cBlueDark1: darken($cBlueBase, 10%); // #04618a - rgb(4, 97, 138) //
+$cBlueDark2: darken($cBlueBase, 20%); // #023d59 - rgb(2, 62, 89) // #0267A5; ???
+$cBlueDark3: rgb(0, 20, 40); // #001428;
+$cBlueDark4: rgb(0, 5, 10); //
+$cBlueDark5: #356180; // map buttons (darker: [<,x])
+$cBlueBright1: #0198da; // #009de2;
+
+$cGrayBase: #CCC;
+$cGrayLight2: lighten($cGrayBase, 15%);
+$cGrayLight1: lighten($cGrayBase, 10%);
+$cGrayDark1: darken($cGrayBase, 10%);
+$cGrayDark2: darken($cGrayBase, 20%);
+
+$cGreenBase: green;
+$cGreenLight2: lighten($cGreenBase, 10%);
+$cGreenLight1: lighten($cGreenBase, 5%);
+$cGreenDark1: darken($cGreenBase, 5%);
+$cGreenDark2: darken($cGreenBase, 10%);
+
+$cOrangeBase: orange;
+$cOrangeLight2: lighten($cOrangeBase, 30%);
+$cOrangeLight1: lighten($cOrangeBase, 20%);
+$cOrangeDark1: darken($cOrangeBase, 5%);
+$cOrangeDark2: darken($cOrangeBase, 7%);
+$cOrangeDark3: darken($cOrangeBase, 15%);
+
+$cRedBase: red;
+$cRedLight2: lighten($cRedBase, 35%);
+$cRedLight1: lighten($cRedBase, 25%);
+$cRedDark1: darken($cRedBase, 10%);
+$cRedDark2: darken($cRedBase, 15%);
+$cRedDark3: darken($cRedBase, 20%);
+
+//
+// MODIFIED OPACITY
+//
+
+$cWhite: white;
+$cWhiteBase: $cWhite;
+$cWhite1: rgba($cWhite, 0.9);
+$cWhite2: rgba($cWhite, 0.8);
+$cWhite3: rgba($cWhite, 0.7);
+$cWhite4: rgba($cWhite, 0.6);
+$cWhite5: rgba($cWhite, 0.5);
+$cWhite6: rgba($cWhite, 0.4);
+$cWhite7: rgba($cWhite, 0.3);
+$cWhite8: rgba($cWhite, 0.2);
+$cWhite9: rgba($cWhite, 0.1);
+
+$cBlack: black;
+$cBlackBase: $cBlack;
+$cBlack1: rgba($cBlack, 0.8);
+$cBlack2: rgba($cBlack, 0.7);
+$cBlack3: rgba($cBlack, 0.6);
+$cBlack4: rgba($cBlack, 0.5);
+$cBlack5: rgba($cBlack, 0.4);
+$cBlack6: rgba($cBlack, 0.38);
+$cBlack7: rgba($cBlack, 0.2);
+$cBlack7p5: rgba($cBlack, 0.15);
+$cBlack8: rgba($cBlack, 0.1);
+$cBlack9: rgba($cBlack, 0.05);
+
+$cBlack2Opaque: #333333;
+$cBlack4Opaque: #6F6F6F;
+$cBlack5Opaque: #808080;
+$cBlack6Opaque: #B0B5B9; // #C0C0CC; // #BBBBBB;
+
+//
+// TEXT
+//
+
+$cTextBase: $cBlack2;
+$cTextLight: rgba($cBlueDark2, 0.70); // $cBlack6;
+$cTextLight1: rgba($cBlueDark2, 0.40);
+$cTextLight2: rgba($cBlueDark2, 0.35);
+$cTextWhite: $cWhite1;
+
+//
+// OTHER
+//
+
+// $cBgBase: #E9F6FA; // fb: #e9ebee; okc: #f3f5f9
+$cBgBase: #F0F2F5; // #F2F7F9; //#EEF7FA; // #F3F5F9;
+$cBgBase1: #F0F1F3;
+$cBgHeader: #305065; // $cBlueDark2;// #465b74; // #356180; // #3274A3;
+$cBgAdmin: rgb(243, 245, 249);
+$cBgHover: rgba($cBlueLight1, 0.15); // rgba($cBlueBase, 0.15); // rgba($cBlueLight1, 0.1);
+$cBgHover2: rgba($cBlueLight1, 0.12); // rgba($cBlueBase, 0.15); // rgba($cBlueLight1, 0.1);
+
+$cBorderA: rgba(black, 0.15); // default
+$cBorderAB: rgba(black, 0.12); // middle
+$cBorderB: rgba(black, 0.1); // lighter
+$cBorderBOpaque: #EEE; // lighter
+$cBorderC: rgba(black, 0.25); // enabled form inputs
+$cBorderCurrent: #c3cdd8;
+
+$cCodeBackground: $cBlack8;
+$cCodeText: $cBlack;
+
+$cLabelText: rgba(#043E59, 0.5);
+$cLabelIcon: rgba(#043E59, 0.4);
+
+// $cControlButtonDefaultText: rgba(20, 70, 100, 0.5);
+// $cControlButtonBorderDefault: rgba($cBlueDark1, 0.5);
+// $cBgControlButtonsLight: #F0F4FB;
+// $cBorderControlButtonsLight: rgba(#04618a, 0.12);
+
+$cActiveDefault: $cBlueBase;
+$cKlassCollectionRoot: #5A7562;
+$cKlassCollection: rgba($cKlassCollectionRoot, 0.85); // #975656;
+$cKlassCollectionLight: rgba($cKlassCollectionRoot, 0.5);
+$cKlassCollectionActive: rgba($cKlassCollectionRoot, 0.7);
+
+// $cKlassCollectionLight1: ;
+$cKlassLocationRoot: rgba(181, 86, 86); // #975656;
+$cKlassLocation: rgba($cKlassLocationRoot, 0.85); // #975656;
+$cKlassLocationLight: rgba($cKlassLocationRoot, 0.6);
+$cKlassLocationActive: rgba(191, 96, 96);// rgba($cKlassLocation, 0.7);
+
+$cKlassPostRoot: #6C8CB0;
+$cKlassPost: rgba($cKlassPostRoot, 0.9); // #975656;
+$cKlassPostLight: rgba($cKlassPostRoot, 0.7);
+$cKlassPostActive: rgba($cKlassPostRoot, 0.9);
+
+$cKlassUserRoot: $cTextLight;
+$cKlassUser: rgba($cKlassUserRoot, 0.85); // #975656;
+$cKlassUserLight: $cKlassUserRoot;
+$cKlassUserActive: $cGreenLight1;
+
+$cMapClusterLg: #DF3131;
+$cMapClusterMd: #EF7454;
+$cMapClusterSm: #FF8C5C;
+
+$cPillDefault: $cBlueDark1; // #023E59;
+$cPillDefaultBorder: rgba($cPillDefault, 0.25);
+$cPillDefaultText: rgba($cPillDefault, 0.7);
+$cPillDefaultTextHover: rgba($cPillDefault, 0.85);
+$cPillBlue: $cBlueBase; // #0584BC;
+$cPillBlue2: $cBlueDark1; // #0267A5; //$cBlueBase; // #0267A5;
+$cPillBlueBorder: rgba($cPillBlue2, 0.5);
+$cPillBlueText: $cPillBlue;
+$cPillBlue2Border: rgba($cBlueBase, 0.7); //$cBlueBase;
+$cPillBlue2Text:  $cPillBlue2;
+$cPillBlue2Background: rgba(#4995CF, 0.12);
+
+$cPezDefault: $cPillDefault;
+$cPezDefaultBorder: $cPillDefaultBorder;
+$cPezDefaultText: $cPillDefaultText;
+$cPezDefaultTextHover: $cPillDefaultTextHover;
+$cPezBlue: $cPillBlue;
+$cPezBlue2: $cPillBlue2;
+$cPezBlueBorder: $cPillBlueBorder;
+$cPezBlueText: $cPillBlueText;
+$cPezBlue2Border: $cPillBlue2Border;
+$cPezBlue2Text: $cPillBlue2Text;
+$cPezBlue2Background: $cPillBlue2Background;
+
+// $cPopupShroud: rgba($cBlueDark3, 0.85);
+$cPopupShroud: rgba($cBlueDark4, 0.85);
+
+$cNavIcon: rgba($cBlueDark1, 0.7); // rgba(80, 122, 139, 0.8); // rgba($cBlueDark2, 0.7);
+
+$cPostBg: #E0FCEC;
+$cPostButton: #73A689;
+$cPostText: #70897A;
+
+$cCollectionBg: #DFF8FC;
+$cCollectionButton: #64A7B4;
+$cCollectionText: #01839C;
+
+$cExplorationBg:  #FAF0FC; // #FDEEFF;
+$cExplorationButton: #AF9AB2;
+$cExplorationText: #936A99;
+
+$cControlButton: rgba($cBlueDark2, 0.666);// rgba($cBlueDark1, 0.6);
+$cControlButtonIcon: rgba($cBlueDark1, 0.555);
+$cControlButtonDefaultHover: rgba($cBlueDark2, 0.7);
+$cControlButtonActive: rgba($cBlueDark1, 0.8);
+$cControlButtonPrimary: rgba($cBlueDark1, 0.9);
+$cControlButtonPrimaryBg: rgba(#4995CF, 0.18);
+// $cControlOverDark: rgba($cWhite, 0.5);
+// $cControlIconOverDark: rgba($cWhite, 0.3);
+// $cControlOverDarkHover: rgba($cWhite, 0.8);
+// $cControlOverDarkActive: rgba($cWhite, 0.9);
+
+// $cControlOverLight: rgba($cBlueDark1, 0.5);
+// $cControlIconOverLight: rgba($cBlueDark1, 0.3);
+// $cControlOverLightHover: rgba($cBlueDark2, 0.7);
+// $cControlOverLightActive: rgba($cBlueDark2, 0.9);
+// $cControlOverLightActive: rgba($cWhite, 0.5);
+
+
+// alternative technique: https://davidwalsh.name/sass-color-variables-dont-suck
+// names: http://www.color-blindness.com/color-name-hue/
+
+// // Grayscale
+// $cWhite:         #FFFFFF;
+// $c-solitude:      #F4F7F9; // background
+// $c-zircon:        #EEEEEE; //
+// $c-gainsboro:     #DDDDDD; // borders
+// $c-veryLightGray: #CCCCCC;
+// $c-nobel:         #9B9B9B; // light gray text
+// $c-finn:          #5D444E; // neutral gray text
+// $c-charcoal:      #4A4A4A; // dark gray text
+// $cBlackSqueeze:  #F7F7F4; // link over dark
+// $c-casper:        #B0B8BD; // link over dark - disabled
+// $c-spindle:       #BAD4DD; // link over light - disabled
+
+// // Blues
+// $c-curiousBlue:   #3A79B2; // primary link
+// $c-cello:         #384D58; // header, sidebar, secondary link
+// $c-cornflower:    #92C9E4; // active table row
+
+// // Reds
+// $c-coralRed:      #FF3146; // red text

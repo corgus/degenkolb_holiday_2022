@@ -1,0 +1,104 @@
+@import '../variables/index';
+
+
+%pez {
+  @include font(sans-serif);
+  display: inline-block;
+  position: relative; // for optional loading animation positioning
+  padding: $paddingBtnSm;
+  border: none;
+  border-radius: 5px; // 20px; // 22px/20px; <= fix sub-px artifacts
+  font-size: $fontSizeBase;
+  line-height: $lineHeightBase180;
+  cursor: pointer;
+  transition: $btnTransitionDefault;
+  bottom: 0;
+  box-shadow: $boxShadowPezDefault;
+  background: transparent;
+  height: 30px;
+
+
+  &.icon-only {
+    width: 30px;
+    padding: 0;
+    text-align: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 15px;
+  }
+
+  &.is-loading,
+  &.is-loading:disabled,
+  &.is-loading:disabled:hover {
+    cursor: wait;
+  }
+
+  &:not(.is-loading):disabled,
+  &:not(.is-loading):disabled:hover,
+  &:not(.is-loading).is-disabled,
+  &:not(.is-loading).is-disabled:hover {
+    cursor: not-allowed;
+  }
+}
+
+%pez-default {
+  @extend %pez;
+  color: $cPezDefaultText;
+  box-shadow: $boxShadowPezDefault;
+
+  &:focus { box-shadow: $boxShadowPezDefaultFocus; }
+  &:hover {
+    color: $cPezDefaultTextHover;
+    box-shadow: $boxShadowPezDefaultHover;
+  }
+}
+
+%pez-blue {
+  @extend %pez;
+  color: $cPezBlueText;
+  box-shadow: $boxShadowPezBlue;
+
+  &:focus { box-shadow: $boxShadowPezBlueFocus; }
+  &:hover { box-shadow: $boxShadowPezBlueHover; }
+}
+
+%pez-blue-2 {
+  @extend %pez;
+  color: $cPezBlue2Text;
+  box-shadow: $boxShadowPezBlue2;
+  background: $cPezBlue2Background;
+
+  &:focus { box-shadow: $boxShadowPezBlue2Focus; }
+  &:hover { box-shadow: $boxShadowPezBlue2Hover;}
+}
+
+// pez-icon
+%pez-icon {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: $fontSizeSmall;
+  padding-right: 3px;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  height: 20px;
+}
+
+%pez-icon-only {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: $fontSizeSmall;
+  width: auto; // 10px;
+  height: 20px;
+  text-align: center;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+}

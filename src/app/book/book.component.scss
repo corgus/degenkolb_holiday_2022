@@ -1,0 +1,16 @@
+// $font_header: "nyt-cheltenham";
+// $gray_border: 1px solid #e2e2e2;
+// $article_height: calc(100vh - 58px - 30px);
+
+@import 'book_resources.scss';
+
+:host {
+  height: 100vh;
+  max-height: $book_height;
+  overflow: hidden;
+  // font-family: $font_header;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}

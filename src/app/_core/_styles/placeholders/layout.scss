@@ -1,0 +1,98 @@
+@import '../variables/index';
+
+
+%absoluteFill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+%card {
+  background: white;
+  border-radius: $borderRadiusCard;
+  box-shadow: $boxShadowCard;
+}
+
+.widget-card {
+  @extend %card;
+}
+
+%cardHover {
+  // margin-top: -2px;
+  // margin-bottom: 2px;
+  box-shadow: $boxShadowCardHover;
+}
+
+%cardHoverSidebar {
+  margin-left: 10px;
+  margin-right: -10px;
+  box-shadow: $boxShadowCardHover3; // -10px 8px 20px -5px;
+  // box-shadow: $boxShadowCardHover2;
+}
+
+%cardHoverLift {
+  margin-top: -4px;
+  margin-bottom: 4px;
+  box-shadow: $boxShadowCardHover;
+}
+
+
+// top triangle from: http://www.cssarrowplease.com/
+%topTriangle {
+  &::after,
+  &::before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  &::after {
+    border-bottom-color: $cBlack3;
+    border-width: $modalMapBottomBarTriangleHeight;
+    margin-left: -$modalMapBottomBarTriangleHeight;
+  }
+
+  &::before {
+    border-width: $modalMapBottomBarTriangleHeight + 2*$modalMapBottomBarHeight;
+    margin-left: -($modalMapBottomBarTriangleHeight + 2*$modalMapBottomBarHeight);
+  }
+}
+.top-triangle {
+  @extend %topTriangle;
+}
+
+%avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  // box-shadow: 0 -1px 20px -2px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255,255,255,0.5);
+}
+
+%unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.unselectable {
+  @extend %unselectable;
+}
+
+%ss-app-footer {
+  // margin-top: 50px;
+  border-top: 1px solid #444;
+  padding: 10px 0 10px 0;
+  background: rgba(40, 50, 65, 1); // #282c41; //#444654; // #555862; // #555560;
+  color: $cWhite6;
+  z-index: 2;
+  // font-weight: 300;
+  font-size: $fontSizeBase;
+}

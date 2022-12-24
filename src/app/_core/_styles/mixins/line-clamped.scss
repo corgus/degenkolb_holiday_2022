@@ -1,0 +1,87 @@
+
+// ----
+// Sass (v3.4.21)
+// Compass (v1.0.3)
+// ----
+// from https://revelry.co/multi-line-ellipsis-using-pure-css/
+
+
+@mixin line-clamped($font-size: 14px, $line-height: 1.8, $lines-to-show: 3, $excerpt-bg: transparent) {
+  background: $excerpt-bg;
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-height: $font-size * $line-height * $lines-to-show; /* Fallback for non-webkit */
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @-moz-document url-prefix() {
+    overflow: hidden;
+    position: relative;
+    &:before {
+      background: $excerpt-bg;
+      bottom: 0;
+      position: absolute;
+      right: 0;
+      float: right;
+      content: '\2026';
+      margin-left: -3rem;
+      width: 3rem;
+    }
+    &:after {
+      content: '';
+      background: $excerpt-bg;
+      position: absolute;
+      height: 50px;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+}
+
+// note: alternative option using em ~ https://codepen.io/zachhanding/pen/MKyVPq
+
+// /* Begin required CSS. */
+// %line-clamp {
+//   display            : block;
+//   display            : -webkit-box;
+//   /* autoprefixer: ignore next */
+//   -webkit-box-orient : vertical;
+//   position           : relative;
+
+//   line-height        : 1.2;
+//   overflow           : hidden;
+//   text-overflow      : ellipsis;
+//   padding            : 0 !important;
+// }
+
+
+// .line-clamp-1 {
+//   @extend %line-clamp;
+//   -webkit-line-clamp : 1;
+//   height             : calc(1em * 1.2 * 1);
+// }
+// .line-clamp-2 {
+//   @extend %line-clamp;
+//   -webkit-line-clamp : 2;
+//   height             : calc(1em * 1.2 * 2);
+// }
+// .line-clamp-3 {
+//   @extend %line-clamp;
+//   -webkit-line-clamp : 3;
+//   height             : calc(1em * 1.2 * 3);
+// }
+// .line-clamp-4 {
+//   @extend %line-clamp;
+//   -webkit-line-clamp : 4;
+//   height             : calc(1em * 1.2 * 4);
+// }
+// .line-clamp-5 {
+//   @extend %line-clamp;
+//   -webkit-line-clamp : 5;
+//   height             : calc(1em * 1.2 * 5);
+// }
+// /* End required CSS. */

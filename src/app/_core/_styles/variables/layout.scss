@@ -1,0 +1,212 @@
+@import 'colors';
+
+// WINDOW
+
+$windowMinWidth: 320px;
+
+// MISC
+
+$bodyMinWidth: 300px;
+
+// button transition: excluding opacity by default
+$btnTrans: 150ms ease;
+$btnTransitionDefault: color $btnTrans,
+                       background $btnTrans,
+                       background-color $btnTrans,
+                       box-shadow $btnTrans;
+                       // border $btnTrans,
+                       // bottom $btnTrans;
+
+$borderRadiusContainer: 8px;
+$borderRadiusContainer2: 5px;
+$borderRadiusCard: $borderRadiusContainer;
+$borderRadiusCardPortrait: calc($borderRadiusContainer / ($borderRadiusContainer + 1px));
+$borderRadiusCardLandscape: calc(($borderRadiusContainer + 1px) / $borderRadiusContainer);
+$borderRadiusInput: 3px;
+$borderRadiusModal: 17px; // $borderRadiusCard;
+$borderRadiusModalTop: $borderRadiusModal - 1;
+
+// $sidebarTopPaddingHMd: 30px;
+
+$controlButtonPaddingH: 13px;
+$controlButtonHeight: 31px;
+$controlButtonTransition: 200ms all ease;
+$controlButtonLineHeight: 20px;
+
+// $controlBarControlPaddingH: 9px;
+// $controlBarHeight: 35px;
+// $controlBarBottomBorderHeight: 2px;
+// $controlBarTransition: 200ms all ease;
+// $controlBarOverDarkActiveTextShadow: -0.5px 0.5px 1px rgba(#444654, 0.7),
+//                                        0.5px 0.5px 1px rgba(#444654, 0.7);
+
+// transition timing funcations / easing
+$easeInQuad: cubic-bezier(0.550, 0.085, 0.680, 0.530); /* easeInQuad */
+$easeInQuart: cubic-bezier(0.895, 0.030, 0.685, 0.220); /* easeInQuart */
+
+// note: box-shadows in box-shadows.scss
+
+$paddingBtnDefault: 6px 15px 5px 15px;
+$paddingBtnH25: 0 10px;
+$paddingBtnSm: 3px 13px 3px 13px;
+$paddingBtnSmaller: 3px 10px 3px 10px;
+$paddingBtnHeader: 4px 10px 3px;
+$paddingBtnTopCover: 2px 10px;
+
+$collectionControlMargin: 12px;
+$collectionControlOuterBorderWidth: 1px;
+$collectionControlDiameter: 40px;
+$collectionColumnWidth: 60px;
+$collectionAnimationDuration: 200ms;
+
+$coverAvatarWidthMd: 80px;
+
+$dashboardWidgetPaddingHSm: 12px;
+$dashboardWidgetPaddingHMd: 18px;
+$dashboardWidgetTransition: all 150ms ease;// 200ms cubic-bezier(0.165, 0.84, 0.44, 1);// ease-out 200ms;
+$dashboardWidgetContainerShadow1: inset 0 0 0 1px $cBlack7;
+$dashboardWidgetContainerShadow2: 0 6px 10px -8px $cBlack2;
+$dashboardWidgetContainerShadow3: 0 5px 8px -7px $cBlack1; // 0 5px 10px -8px $cBlack5;
+
+$dashboardWidgetHeaderIconContainerRadius: 22px;
+$dashboardWidgetHeaderLineHeight: 32px;
+
+$cardTransition: all ease-out 100ms;
+$cardStackOffsetH: 1%; // 2px; // 3px;
+$cardStackOffsetV: 2px;
+$cardStackPadding: 18px;
+$cardStackTransition: $cardTransition;
+
+$carouselCardHeight: 230px;
+$carouselCardTopHeight: 150px;
+$carouselCardBottomHeight: $carouselCardHeight - $carouselCardTopHeight;
+
+$headerHeight: 44px;
+
+$itemShowContainerPaddingV: 50px;
+$itemShowTitleRowTopPadding: 20px;
+$itemShowTransition: 500ms ease all;
+
+$lineHeightBase: 180%;
+$lineHeightBasePx: 29px;
+$lineHeight150pct: 150%;
+$lineHeight130pct: 130%;
+$lineHeightBase180: 24px; // 14px: 180% rounded
+$lineHeightHtml180: 29px; // 16px: 180% rounded
+
+
+$sidebarWidthMdPct: 33%;
+$sidebarWidthLgPx: 450px;
+
+$mainContainerBorderRadius: 13px;
+$mainContainerMarginTop: 100vh;
+$mainContainerMarginH: 1vw;
+$mainContainerMarginBottom: 10vh;
+
+$modalAboveColor: rgba($cWhite, 0.45);
+$modalBreadcrumbTextColor: rgba($cWhite, 0.55);
+$modalBreadcrumbIconColor: rgba($cWhite, 0.40);
+
+$modalAboveHoverColor: rgba($cWhite, 0.8);
+$modalAboveHeight: 30px;
+$modalAbovePaddingVSm: 10px;
+$modalAbovePaddingVMd: 13px;
+$modalAboveContainerHeightSm: $modalAboveHeight + (2 * $modalAbovePaddingVSm);
+$modalAboveContainerHeightMd: $modalAboveHeight + (2 * $modalAbovePaddingVMd);
+$modalAboveLineHeight: 16px;
+$modalAboveBackTransition: all 300ms ease;
+$modalAboveBackPaddingLeft: 12px;
+
+$modalBoxShadow: 0 5px 6px -3px $cBlack;
+$modalPaddingHMd: 5%;
+$modalPaddingHSm: 18px;
+$modalMaxWidth: 900px;
+
+// $mainBoxShadow: 0 5px 6px -3px rgba($cBlack, 0.5);
+$mainPaddingHMd: 5%;
+$mainPaddingHSm: 18px;
+$mainMaxWidth: 900px;
+
+// $modalTransitionLoading: all 500ms ease;
+// $modalTransitionIn: all 200ms ease;
+// $modalTransitionOut: all 700ms $easeInQuart;
+// $modalTransitionMap: all ease 500ms;
+// $modalTransitionMapBottom: all 700ms $easeInQuart;
+// $modalTransitionContentIn: all 700ms $easeInQuart;
+// $modalTransitionContentOut: all ease 500ms;
+$modalTransitionLoading: all 500ms ease;
+$modalTransitionIn: all 200ms ease;
+$modalTransitionOut: all 300ms ease;
+
+$mainTransitionLoading: all 500ms ease;
+$mainTransitionIn: all 200ms ease;
+$mainTransitionOut: all 300ms ease;
+$mainTransitionContentIn: all 500ms ease;
+$mainTransitionContentOut: all 500ms ease;
+
+$mainSmWidth: 98%;
+$mainMaxWidth: 800px;
+
+$modalTransitionMap: all 500ms ease;
+$modalTransitionMapBottom: all 500ms ease;
+$modalTransitionContentIn: all 500ms ease;
+$modalTransitionContentOut: all 500ms ease;
+
+
+$popupPaddingDefault: 18px;
+$popupPaddingTop: $popupPaddingDefault;
+$popupPaddingRight: $popupPaddingDefault;
+$popupPaddingBottom: 25px;
+$popupPaddingLeft: $popupPaddingDefault;
+$popupPadding: $popupPaddingTop $popupPaddingRight $popupPaddingBottom $popupPaddingLeft;
+$popup2ContentWidthFraction: 0.96; // 96%
+$popup2ContentWidthPct: 95%; // one less than abocve // 100% * $popup2ContentWidthFraction;
+$popupMinWidth: $windowMinWidth * $popup2ContentWidthFraction;
+
+$popupMenuPaddingV: 5px;
+$popupMenuPaddingH: 20px;
+$popupMenuBorder: 1px solid $cBorderA;
+
+$profileAvatarWidthMd: 80px;
+$profileAvatarWidthSm: 60px;
+// $profileAvatarOverlap: 20px;
+
+$quillEditorTopPadding: 15px;
+
+$rootContentMaxWidthSm2: 600px;
+$rootTopMaxWidthSm2: 400px;
+
+$scrollWidth: 20px;
+
+$serverBarHeight: 20px;
+
+$sidebarBorderRadius: 13px;
+$sidebarTopPaddingHSm: 18px;
+$sidebarTopTransition: 500ms all ease;
+
+
+$stickyControlHMargin: 12px;
+$stickyControlVMargin: 10px;
+$stickyControlOuterBorderWidth: 1px;
+$stickyControlDiameter: 40px;
+$stickyColumnWidth: 60px;
+$stickyAnimationDuration: 200ms;
+
+$tabsBottomBorderWidth: 3px;
+$tabSpacing: 5px;
+$tabMaxWidth: 200px;
+
+$textShadow1: 0px 1px 2px rgba(0, 0, 0, 0.8);
+$textShadowTopShadow: 0px -3px 20px rgba(0,15,40,.4);
+
+$modalMapBottomBarHeight: 3px;
+$modalMapBottomBarTriangleHeight: 10px;
+
+$topControlBoxShadowOffset: 1px;
+$topControlBoxShadowBlur: 2px;
+$topControlBoxShadowColor: rgba(0, 0, 0, 0.05);
+
+
+$mapMarkerDetailsMapHeightSm: 200px;
+$mapMarkerDetailsMapHeightLg: 300px; // 200px;
+$mapTransition: all ease 500ms;

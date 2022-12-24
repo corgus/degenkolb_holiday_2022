@@ -1,0 +1,46 @@
+<ng-container *ngIf="isLoadingType('contain')">
+  <div [class]="loadingContainerClass">
+    <ng-content *ngTemplateOutlet="loadingTemplate1"></ng-content>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isLoadingType('center')">
+  <ng-content *ngTemplateOutlet="loadingTemplate1"></ng-content>
+</ng-container>
+
+<ng-template #loadingTemplate1>
+  <ng-container *ngIf="canCSS3">
+    <div [class]="loadingContentCss3Class">
+      <div [class]="loadingCirclesClass"
+        [ngClass]="{ 'color-light': isIconColor('white'),
+                     'color-dark': isIconColor('black') }">
+        <div class="loading-circle loading-circle-1"></div>
+        <div class="loading-circle loading-circle-2"></div>
+        <div class="loading-circle loading-circle-3"></div>
+        <div class="loading-circle loading-circle-4"></div>
+        <div class="loading-circle loading-circle-5"></div>
+        <div class="loading-circle loading-circle-6"></div>
+        <div class="loading-circle loading-circle-7"></div>
+        <div class="loading-circle loading-circle-8"></div>
+      </div>
+
+      <ng-content *ngTemplateOutlet="loadingTemplate2"></ng-content>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!canCSS3">
+    <div class="loading-content-gif--sm">
+      <img [src]="loadingSrc"
+        class="display-inline-block vertical-align-top"/>
+
+      <ng-content *ngTemplateOutlet="loadingTemplate2"></ng-content>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #loadingTemplate2>
+  <div class="display-inline-block">
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+

@@ -1,0 +1,23 @@
+@import '../resources';
+
+.icon-container-chevron {
+  vertical-align: text-bottom;
+  line-height: 18px;
+}
+
+.icon-container-angle-up,
+.icon-container-angle-down {
+  // vertical-align: text-bottom;
+  // line-height: 18px;
+}
+
+.nav-icon {
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+  padding-right: 10px;
+  font-size: 85%;
+  color: $cNavIcon;
+  vertical-align: bottom;
+  margin-bottom: -2px;
+}

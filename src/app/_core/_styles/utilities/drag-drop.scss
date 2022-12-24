@@ -1,0 +1,82 @@
+@import '../resources';
+
+// .cdk-drop-list Corresponds to the cdkDropList container.
+// .cdk-drag Corresponds to a cdkDrag instance.
+// .cdk-drag-disabled  Class that is added to a disabled cdkDrag.
+// .cdk-drag-preview This is the element that will be rendered next to the user's cursor as they're dragging an item in a sortable list. By default the element looks exactly like the element that is being dragged.
+// .cdk-drag-placeholder This is element that will be shown instead of the real element as it's being dragged inside a cdkDropList. By default this will look exactly like the element that is being sorted.
+// .cdk-drop-list-dragging A class that is added to cdkDropList while the user is dragging an item.
+// .cdk-drop-list-disabled A class that is added to cdkDropList when it is disabled.
+// .cdk-drop-list-receiving  A class that is added to cdkDropList when it can receive an item that is being dragged inside a connected drop list.
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Animate an item that has been dropped. */
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.2;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging > *:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drag-drop-list--default {
+  border: solid 1px $cBorderA;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.drag-drop-row--default {
+  border-bottom: solid 1px $cBorderA;
+  display: flex;
+  padding: 0 5px;
+  flex-direction: row;
+  align-items: flex-start;
+  box-sizing: border-box;
+  background: white;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// .drag-drop-item-content {
+//   flex: 1;
+// }
+
+.drag-drop-item-handle {
+  cursor: move;
+  flex: none;
+  color: $cBlack8;
+  font-size: $fontSizeBase;
+}
+
+.drag-drop-row--default:not(.cdk-drag-placeholder) {
+  .itl-item-content.is-hovering {
+    .itl-item-more-container { color: $cBlueBase; }
+  }
+
+  .itl-item-handle-container:hover { color: $cBlueBase; }
+}
+

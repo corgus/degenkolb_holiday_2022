@@ -1,0 +1,157 @@
+@import "../variables/colors";
+
+//
+// BASE Colors
+//
+
+@mixin baseColorUtilities(
+  $baseNames: (blue, gray, green, orange, red),
+  $modifiers: (dark-2, dark-1, base, light-1, light-2),
+  $colors: (
+    blue-dark-2: $cBlueDark2,
+    blue-dark-1: $cBlueDark1,
+    blue-base: $cBlueBase,
+    blue-light-1: $cBlueLight1,
+    blue-light-2: $cBlueLight2,
+
+    gray-dark-2: $cGrayDark2,
+    gray-dark-1: $cGrayDark1,
+    gray-base: $cGrayBase,
+    gray-light-1: $cGrayLight1,
+    gray-light-2: $cGrayLight2,
+
+    green-dark-2: $cGreenDark2,
+    green-dark-1: $cGreenDark1,
+    green-base: $cGreenBase,
+    green-light-1: $cGreenLight1,
+    green-light-2: $cGreenLight2,
+
+    orange-dark-2: $cOrangeDark2,
+    orange-dark-1: $cOrangeDark1,
+    orange-base: $cOrangeBase,
+    orange-light-1: $cOrangeLight1,
+    orange-light-2: $cOrangeLight2,
+
+    red-dark-2: $cRedDark2,
+    red-dark-1: $cRedDark1,
+    red-base: $cRedBase,
+    red-light-1: $cRedLight1,
+    red-light-2: $cRedLight2
+  )
+) {
+
+  @for $i from 1 through length($baseNames) {
+    $baseName: nth($baseNames, $i);
+    $baseNameString: "" + $baseName;
+    $baseValue: map-get($colors, #{$baseNameString}-base);
+
+    .color-#{$baseNameString} {
+      color: $baseValue !important;
+    }
+
+    @for $j from 1 through length($modifiers) {
+      $modifier: nth($modifiers, $j);
+      $value: map-get($colors, #{$baseNameString}-#{$modifier});
+      // $value: map-get($colors, $baseNameString#{-base});
+
+      .color-bg-#{$baseNameString}-#{$modifier} {
+        background-color: $value !important;
+      }
+
+      .color-#{$baseNameString}-#{$modifier} {
+        color: $value !important;
+      }
+    }
+  }
+}
+@include baseColorUtilities;
+
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.3+28,0.65+100 */
+  // background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 28%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+  // background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 28%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+  // background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 28%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+
+//
+// BACKGROUND Colors
+//
+
+.color-bg-base { background-color: $cBgBase !important; }
+.color-bg-base-1 { background-color: $cBgBase1 !important; }
+.color-bg-hover { background-color: $cBgHover !important; }
+
+.color-bg-white { background-color: $cWhite !important; }
+.color-bg-white-1 { background-color: $cWhite1 !important; }
+.color-bg-white-2 { background-color: $cWhite2 !important; }
+.color-bg-white-3 { background-color: $cWhite3 !important; }
+
+.color-bg-black { background-color: $cBlack !important; }
+.color-bg-black-1 { background-color: $cBlack1 !important; }
+.color-bg-black-2 { background-color: $cBlack2 !important; }
+.color-bg-black-3 { background-color: $cBlack3 !important; }
+.color-bg-black-4 { background-color: $cBlack4 !important; }
+.color-bg-black-5 { background-color: $cBlack5 !important; }
+.color-bg-black-6 { background-color: $cBlack6 !important; }
+.color-bg-black-7 { background-color: $cBlack7 !important; }
+.color-bg-black-8 { background-color: $cBlack8 !important; }
+
+
+//
+// OTHER Colors
+//
+
+.color-white { color: $cWhite !important; }
+.color-white-1 { color: $cWhite1 !important; }
+.color-white-2 { color: $cWhite2 !important; }
+.color-white-3 { color: $cWhite3 !important; }
+.color-white-4 { color: $cWhite4 !important; }
+.color-white-5 { color: $cWhite5 !important; }
+.color-white-6 { color: $cWhite6 !important; }
+
+.color-black { color: $cBlack !important; }
+.color-black-1 { color: $cBlack1 !important; }
+.color-black-2 { color: $cBlack2 !important; }
+.color-black-3 { color: $cBlack3 !important; }
+.color-black-4 { color: $cBlack4 !important; }
+.color-black-5 { color: $cBlack5 !important; }
+.color-black-6 { color: $cBlack6 !important; }
+.color-black-7 { color: $cBlack7 !important; }
+.color-black-8 { color: $cBlack8 !important; }
+.color-black-9 { color: $cBlack9 !important;}
+
+.color-black-4-opaque { color: $cBlack4Opaque !important; }
+.color-black-5-opaque { color: $cBlack5Opaque !important; }
+.color-black-6-opaque { color: $cBlack6Opaque !important; }
+
+.color-text-base { color: $cTextBase !important; }
+.color-text-light { color: $cTextLight !important; }
+.color-text-lighter { color: $cTextLight1 !important; }
+
+.color-klass-collection {
+  color: $cKlassCollection !important;
+  &.is-active { color: $cKlassCollectionActive !important; }
+  &.is-bold { color: $cKlassCollectionRoot !important; }
+}
+.color-klass-location {
+  color: $cKlassLocation !important;
+  &.is-active { color: $cKlassLocationActive !important; }
+  &.is-bold { color: $cKlassLocationRoot !important; }
+}
+.color-klass-post {
+  color: $cKlassPost !important;
+  &.is-active { color: $cKlassPostActive !important; }
+  &.is-bold { color: $cKlassPostRoot !important; }
+}
+.color-klass-user {
+  color: $cKlassUser !important;
+  &.is-active { color: $cKlassUserActive !important; }
+  &.is-bold { color: $cKlassUserRoot !important; }
+}
+.color-klass-link {
+  color: $cBlueDark1 !important;
+  &.is-active { color: $cBlueBase !important; }
+  &.is-bold { color: $cBlueBase !important; }
+}
+

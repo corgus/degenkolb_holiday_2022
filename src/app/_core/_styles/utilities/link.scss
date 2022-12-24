@@ -1,0 +1,49 @@
+@import '../resources';
+
+a {
+  @extend %a;
+  color: $cTextBase;
+}
+
+// %link {
+//   @extend %a;
+
+//   &:hover {
+//     text-decoration: underline;
+//   }
+// }
+
+.link-primary {
+  @extend %link;
+  font-weight: bold;
+  // color: $cBlueBase;
+  color: $cBlueBright1;
+}
+
+.link-secondary {
+  @extend %link;
+  // color: $cBlueBase;
+  color: $cBlueBright1;
+}
+
+.link-tertiary {
+  @extend %link;
+  // color: $cBlack6Opaque;
+  color: $cTextLight;
+}
+
+.link-red {
+  @extend %link;
+  color: $cRedBase;
+}
+
+.link-disabled,
+.link-secondary.is-disabled {
+  @extend %link;
+  color: $cBlack6;
+  cursor: not-allowed;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,267 @@
+@import '../resources';
+
+
+$checkbox-width: 20px;
+$checkbox-label-margin: 8px;
+$checkbox-option-margin: 10px;
+
+$fieldsetMarginBottomSm: 15px;// 20px;
+$fieldsetMarginBottomMd: 20px;
+$fieldsetTitleMarginTopSm: 7px;
+$fieldsetTitleMarginTopMd: 12px;
+$formInputBorderDefault: 1px solid $cBorderC;
+
+
+
+fieldset {
+  margin-bottom: $fieldsetMarginBottomSm;
+  display: block;
+  line-height: $lineHeight150pct;
+}
+
+.fieldset-title {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 10px;
+
+  color: $cBlack5Opaque;
+  font-size: $fontSizeBase;
+  font-weight: 400;
+
+  // adjustments for multi-line titles
+  line-height: $lineHeight130pct;
+  margin-top: $fieldsetTitleMarginTopMd; // 7px;
+  margin-bottom: 3px;
+}
+
+.fieldset-control {
+  display: inline-block;
+  min-width: 150px;
+  vertical-align: top;
+  width: 100%;
+}
+
+.fieldset-error {
+  font-size: $fontSizeBase;
+  color: $cRedBase;
+  line-height: $lineHeight130pct;
+  margin-top: 5px;
+  // padding-bottom: 5px;
+}
+
+.fieldset-value {
+  font-size: $fontSizeBase;
+  padding-top: 8px;
+  color: $cBlack6Opaque;
+}
+
+fieldset[disabled] {
+  color: $cBlack6;
+
+  .fieldset-control,
+  .fieldset-control label,
+  input,
+  select,
+  textarea,
+  .checkbox-option,
+  .radio-option {
+    cursor: not-allowed;
+  }
+}
+
+
+
+
+
+
+%form-input {
+  appearance: none;
+
+  display: inline-block;
+  border: $formInputBorderDefault;
+  border-radius: 3px;
+  padding: 4px 8px; // 10px
+  // font-size: $fontSizeBase;
+  font-size: $fontSizeHtml;
+  line-height: $lineHeight150pct;
+  background: white;
+  width: 100%;
+  font: inherit;
+
+  // &:before {
+  //   content: "* * *";
+  //   width: 10px;
+  // }
+
+  // &:after {
+  //   content: "* * *";
+  //   width: 10px;
+  // }
+
+  &.font-size-small { font-size: $fontSizeSmall; }
+  &.font-size-smaller { font-size: $fontSizeSmaller; }
+
+  &:focus {
+    // outline-offset: -3px;
+    outline: 2px auto $cBlueLight1;
+    border: 1px solid $cBorderC;
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: $cBlack6;
+    border: 1px solid $cBorderB;
+  }
+}
+
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"], {
+  @extend %form-input;
+}
+
+// prevent zoom-in on mobile (safari)
+// https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+@include media(sm) {
+  input[type="color"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="month"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  select:focus,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+textarea {
+  @extend %form-input;
+  resize: vertical;
+  vertical-align: top;
+  min-width: 200px;
+  min-height: 60px;
+}
+
+select {
+  @extend %form-input;
+  padding: 4px 20px 4px 10px;
+  background-repeat: no-repeat;
+  background-position: right center;
+
+  // note: background image contains transparent right margin (10px)
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAGCAYAAAAhS6XkAAAAAXNSR0IArs4c6QAAAKRJREFUGBljZGBgyATiMCDGBVbt379/toODwz9cCkDiBw4cYGL6+/evkru7+2tsCkHiIHmQQYyMjHgx2LL///8z/vz5c6Gent5qoIH7YRjEB4ovAskDMRM2y5DF4GqADNZPnz5tlpWVXQsyDESD+CBxkAa4QmTdaGwUNUAOz4sXL/YZGBisAtEgPkw9MMxYQIrxYZAamHowDVQsBsQ7QDSKBJEcAPw1f539FeFsAAAAAElFTkSuQmCC");
+}
+
+fieldset[disabled] select,
+select[disabled] {
+  // note: background image contains transparent right margin (10px)
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAGCAYAAAAhS6XkAAAAAXNSR0IArs4c6QAAAKRJREFUGBljZGBgsABiPSDGBS7t37//jIODwz9cCkDiBw4cYGL6+/dvcENDgzw2hSBxkDzIIEZGRrwYbNn///8Z//z5syAlJaUaaGAaDIP4QPGFIHkgZsJmGbIYXA2Qwfrjx49N3t7eJSDDQDSIDxIHaYArRNaNxkZRA+TwfP78eU96enoNiAbxYeqBYcYCUowPg9TA1INpoGIxIN4BolEkiOQAAMVFgMYiZWDjAAAAAElFTkSuQmCC");
+}
+
+// input[type="checkbox"] {
+//   margin-right: 5px;
+// }
+
+// fieldset[type="checkbox"] {
+//   label {
+//     padding-left: $checkbox-margin;
+//   }
+
+//   input {
+//     margin-left: -($checkbox-width + $checkbox-margin);
+//   }
+// }
+
+.checkbox-option,
+.radio-option {
+  position: relative;
+
+  // &:not(:last-of-type) {
+  margin-bottom: $checkbox-option-margin;
+
+  input {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0;
+    margin-right: -($checkbox-width);
+    border: $formInputBorderDefault;
+  }
+  label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: $fontSizeBase;
+    line-height: $lineHeight130pct;
+    padding-left: $checkbox-width + $checkbox-label-margin;
+  }
+}
+
+.checkbox-option.align-top {
+  input {
+    margin-top: 7px;
+    vertical-align: top
+  }
+
+  label {
+    vertical-align: top
+  }
+}
+
+::placeholder {
+  color: rgba($cBlack, 0.4); //$cGrayBase;
+  opacity: 1;
+}
+
+.autosave-status {
+  display: inline-block;
+  position: relative;
+  font-size: $fontSizeSmall;
+  vertical-align: middle;
+  margin-left: 24px;
+  height: 40px;
+  color: $cTextLight1; // $cBlack6Opaque;
+  width: 60%;
+}
+
+.autosave-status-option {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 300ms ease;
+  opacity: 1;
+  line-height: $lineHeight130pct;
+
+  &.is-hidden {
+    opacity: 0
+  }
+}
+
+.autosave-status-link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+@include media(sm) {
+  .fieldset { margin-bottom: $fieldsetMarginBottomSm; }
+  .fieldset-title { margin-top: $fieldsetTitleMarginTopSm; }
+}

@@ -1,0 +1,113 @@
+<div class="max-width-300">
+  <h2 class="popup-title padding-0">Log in</h2>
+
+  <p *ngIf="message" class="txt-sans-serif margin-top-10 txt-size-base color-red-base">
+    {{ message }}
+  </p>
+
+  <p class="txt-sans-serif padding-bottom-none">
+    <a (click)="navigateToRegisterForm()"
+      class="txt-size-base link-secondary">
+        Need an account? Register here
+    </a>
+  </p>
+
+  <form *ngIf="form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
+
+    <fieldset [disabled]="isSubmitting">
+      <label class="fieldset-title" for="email">email</label>
+
+      <div class="fieldset-control display-block">
+        <input formControlName="email"
+          autocomplete="email"
+          ssAutofocus
+          type="text"
+          (keyup)="lowercaseInput($event)"/>
+
+        <ng-container *ngIf="form.get('email').dirty && form.get('email').touched">
+          <div class="fieldset-error"
+            *ngIf="form.get('email').hasError('required')">
+              An email is required
+          </div>
+
+          <div class="fieldset-error"
+            *ngIf="form.get('email').hasError('pattern')">
+              This doesn't look like an email
+          </div>
+        </ng-container>
+
+        <div class="fieldset-error"
+          *ngIf="backendErrors['incorrect_email'] && form.get('email').pristine">
+            {{ backendErrors['incorrect_email'] }}
+        </div>
+
+        <div class="fieldset-error line-height-180pct padding-right-20"
+          *ngIf="backendErrors['user_pending'] && form.get('email').pristine">
+          This account is awaiting approval. We'll send you an email when this occurs, but feel free to
+          <a class="link-red txt-underline" (click)="onSelectContactUs()">Contact Us</a> with any questions.
+        </div>
+
+        <div class="fieldset-error"
+          *ngIf="backendErrors['email_not_confirmed'] && form.get('email').pristine">
+            {{ backendErrors['email_not_confirmed'] }}
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset [disabled]="isSubmitting">
+      <label class="fieldset-title" for="password">password</label>
+
+      <div class="fieldset-control display-block">
+        <input formControlName="password"
+          type="password"
+          autocomplete="current-password"/>
+
+        <div class="fieldset-error"
+          *ngIf="backendErrors['incorrect_password'] && form.get('password').pristine">
+            {{ backendErrors['incorrect_password'] }}
+        </div>
+
+        <div class="fieldset-error"
+          *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+            A password is required
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- <fieldset *ngIf="requireRecaptcha"
+      class="margin-top-30">
+        <ss-recaptcha-input
+          [disabled]="isSubmitting"
+          [error]="backendErrors['recaptcha_error']"
+          (onCorrectCaptcha)="handleCorrectCaptcha($event)"
+          (onExpiredCaptcha)="handleExpiredCaptcha($event)">
+        </ss-recaptcha-input>
+    </fieldset> -->
+
+    <div class="clearfix margin-top-25">
+      <div class="float-left">
+        <a (click)="navigateToPasswordForgot()"
+          class="txt-size-small link-tertiary display-inline-block margin-top-8">
+            reset password
+        </a>
+      </div>
+      <div class="float-right">
+        <a (click)="closePopup()"
+          class="btn-secondary margin-right-15">
+          cancel
+        </a>
+
+        <button type="submit"
+          class="btn-primary"
+          [class.is-loading]="isSubmitting"
+          [disabled]="isSubmitting">
+          log in
+
+          <corg-loading *ngIf="isSubmitting" iconColor="white"></corg-loading>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

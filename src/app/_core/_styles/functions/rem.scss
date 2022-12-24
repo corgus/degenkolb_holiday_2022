@@ -1,0 +1,8 @@
+@import '../variables/index';
+
+@function rem($px) {
+  $remSize: $px / $fontSizeHtml;
+
+  @return #{$remSize}rem;
+}
+

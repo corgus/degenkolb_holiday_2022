@@ -1,0 +1,38 @@
+// @import 'reset';
+@import 'resources';
+
+.bg-gray-1 {
+  background: #FAFAFA !important;
+}
+
+.bg-gray-2 {
+  background: rgba(black, 0.1) !important;
+}
+
+.admin-category-container {
+  background: #FAFAFA;
+  border-radius: 10px;
+  box-shadow: 5px 10px 20px 0 rgba(black, 0.3);
+  // padding: 20px;
+}
+
+.content-header-container {
+  background: rgba(black, 0.1);
+  box-shadow: 0 0 1px 1px rgba(black, 0.2);
+}
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+// $primary: map-get($app-theme, primary);
+// $accent: map-get($app-theme, accent);
+
+:root {
+  --color-primary: #{mat-color($app-primary)};
+  --color-accent: #{mat-color($app-accent)};
+  --color-warn: #{mat-color($app-warn)};
+  --color-success: #{mat-color($app-success)};
+}

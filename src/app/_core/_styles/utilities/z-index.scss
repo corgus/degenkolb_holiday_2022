@@ -1,0 +1,15 @@
+@import '../resources';
+
+@mixin zIndexGenerator(
+  $values: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+) {
+  @for $j from 1 through length($values) {
+    $value: nth($values, $j);
+
+    // i.e. z-index-2
+    .z-index-#{$value} {
+      z-index: #{$value};
+    }
+  }
+}
+@include zIndexGenerator;

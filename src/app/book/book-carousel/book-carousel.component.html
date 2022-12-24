@@ -1,0 +1,54 @@
+<div class="book-carousel"
+  [class.is-front]="isClosedFront"
+  [class.is-back]="isClosedBack">
+
+  <div class="pages" *ngIf="pages" >
+    <ng-container *ngFor="let content of pageContent; let index = index">
+      <ng-container *ngIf="index % 2 === 0">
+        <ss-book-page
+          [ssIndex]="index"
+          [ssResetPages]="resetPages"
+          [ssOptions]="options"
+          [ssPages]="pageContent"
+          (onPageFlipping)="handlePageFlipping($event)" >
+
+          <ng-content front>
+          </ng-content>
+
+          <ng-content back>
+          </ng-content>
+        </ss-book-page>
+      </ng-container>
+    </ng-container>
+  </div>
+
+<!--   <div class="pages" *ngIf="pages" >
+    <ng-container *ngFor="let content of pageContent; let index = index">
+      <ng-container *ngIf="index % 2 === 0">
+        <ss-book-page
+          [ssIndex]="index"
+          [ssResetPages]="resetPages"
+          [ssOptions]="options"
+          [ssPages]="pageContent"
+          (onPageFlipping)="handlePageFlipping($event)" >
+
+          <ng-content front>
+          </ng-content>
+
+          <ng-content back>
+          </ng-content>
+        </ss-book-page>
+      </ng-container>
+    </ng-container>
+  </div> -->
+
+  <!-- <div class="is-hidden"> -->
+  <!-- <ng-content></ng-content> -->
+    <!-- <ng-container *ngFor="let content of pages; let index = index">
+      <ss-book-page-content
+        ssIsTemplate=false>
+        {{ content }}
+      </ss-book-page-content>
+    </ng-container> -->
+  <!-- </div> -->
+</div>

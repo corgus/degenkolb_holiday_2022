@@ -1,0 +1,21 @@
+@import '../variables/index';
+
+%a {
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 300ms ease;
+}
+
+%link {
+  @extend %a;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.is-disabled,
+  &.is-disabled:hover {
+    cursor: default;
+    text-decoration: none;
+  }
+}

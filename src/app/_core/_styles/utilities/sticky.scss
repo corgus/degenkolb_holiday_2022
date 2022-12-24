@@ -1,0 +1,162 @@
+@import '../resources';
+
+.sticky-stuck {
+  position: fixed !important;
+  will-change: transform;
+
+  .sticky-controls-content-h {
+    &:not(.is-stacked-above) {
+      box-shadow: 0 -2px 2px -1px rgba(0, 0, 0, 0.15); // 0 -1px 3px 0 rgba($cBlack, 0.2) !important; // 0 -3px 2px -2px
+    }
+  }
+}
+
+%sticky-control {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  height: $stickyControlDiameter;
+  width: $stickyControlDiameter;
+  text-align: center;
+  border: 1px solid transparent; //rgba($cBlack, 0.08);
+  // background: $cBgBase;
+  cursor: pointer;
+  color: $cBlack5; // $cTextLight; // $cBlack5;
+  font-size: 16px;
+  transition: all $stickyAnimationDuration ease;
+  transform: rotate(45deg);
+
+  &:not(.is-disabled):not(.is-loading):hover {
+    border-color: rgba($cBlack, 0.15);
+    color: $cTextBase;
+    background: $cBgHover;
+  }
+
+  &.is-active {
+    color: $cActiveDefault; // $cGreenLight1;
+
+    &:not(:hover) .sticky-control-icon::after {
+      display: inline-block;
+      vertical-align: top;
+      transition: 200ms all ease;
+      content: "•";
+      font-size: $fontSizeSmaller;
+      width: 5px;
+      padding-left: 5px;
+      margin: 5px -10px 0 0;
+      opacity: 1;
+    }
+
+    &:hover .sticky-control-icon::after {
+      opacity: 0;
+    }
+  }
+
+
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  &.is-expanded {
+    color: $cBlack4;
+    border-radius: 50% 0 50% 50%;
+    border-color: $cBlack7;
+    box-shadow: 0 0 1px $cBlack6;
+  }
+
+  &.is-loading {
+    .sticky-loading-container {
+      display: block;
+    }
+  }
+
+  &:not(.is-active) {
+    &.is-klass-collection {
+      color: $cKlassCollectionLight;
+      &.is-expanded { color: $cKlassCollectionActive; }
+    }
+    &.is-klass-location {
+      color: $cKlassLocationLight;
+      &.is-expanded { color: $cKlassLocationActive; }
+    }
+    &.is-klass-post {
+      color: $cKlassPostLight;
+      &.is-expanded { color: $cKlassPostActive; }
+    }
+    &.is-klass-user {
+      color: $cKlassUserLight;
+      &.is-expanded { color: $cKlassUserActive; }
+    }
+  }
+}
+
+
+.sticky-control-h {
+  @extend %sticky-control;
+  display: block;
+  float: left;
+  margin-left: $stickyControlHMargin;
+
+  &.is-expanded {
+    border-radius: 0 50% 50% 50%;
+  }
+}
+
+
+.sticky-control-v {
+  @extend %sticky-control;
+  margin-bottom: $stickyControlVMargin;
+
+  &.is-expanded {
+    border-radius: 50% 0 50% 50%;
+  }
+}
+
+.sticky-flex-column {
+  display: flex;
+  position: relative;
+  min-height: $stickyControlDiameter;
+  width: $stickyColumnWidth;
+  margin-left: -($stickyColumnWidth / 2);
+  left: 50%;
+}
+
+.sticky-control-container {
+  &.is-loading {
+    .sticky-control-icon { opacity: 0; }
+    .sticky-loading-container { opacity: 1; }
+  }
+}
+
+.sticky-control-icon {
+  display: inline-block;
+  vertical-align: top;
+  transform: rotate(-45deg);
+  height: $stickyControlDiameter;
+  width: $stickyControlDiameter;
+  transition: opacity 500ms ease;
+
+  &.is-loading { opacity: 0; }
+}
+
+.sticky-control-icon-container {
+  display: inline-block;
+}
+
+.sticky-controls-secondary .sticky-controls-content-h {
+  padding-top: 10px !important;
+}
+
+.sticky-loading-container {
+  display: inline-block;
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 11px; //top: 7px;
+  // left: 11px;
+  opacity: 0;
+  transition: opacity 1000ms ease;
+
+  &.is-loading { opacity: 0.7; }
+}

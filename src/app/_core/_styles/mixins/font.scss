@@ -1,0 +1,12 @@
+@mixin font($style) {
+
+  @if $style == serif {
+    font-family: 'Lora', Georgia, Palatino, Times, serif;
+  } @else if $style == sans-serif {
+    font-family: 'Lato', Helvetica, sans-serif;
+  } @else if $style == monospace {
+    font-family: Consolas, Lucida Console, Courier New, Courier;
+  } @else if $style == tagline {
+    font-family: 'Pangolin', 'Lato', Helvetica, sans-serif;
+  }
+}

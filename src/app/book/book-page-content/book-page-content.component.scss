@@ -1,0 +1,25 @@
+@import '../book_resources.scss';
+
+.book-page-content {
+  // background-color: $book_page_color;
+  // width: 100vw;
+  // height: 43vh;
+  height: 561px; // $book_page_height;
+  box-sizing: border-box;
+
+  width: 100%;
+
+  font-family: "EB_Garamond", serif;
+  font-size: 13px;
+  display: flex;
+  // flex-direction: column;
+}
+
+.book-calligraphy {
+  font-size: 100px;
+  font-family: 'Canterbury', serif;
+  display: inline-block;
+  float: left;
+  line-height: 50px;
+  padding-right: 5px;
+}

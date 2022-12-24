@@ -1,0 +1,11 @@
+%ellipsis-core {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsis($width) {
+  max-width: $width;
+  @extend %ellipsis-core;
+}
+

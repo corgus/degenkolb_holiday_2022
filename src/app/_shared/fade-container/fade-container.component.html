@@ -1,0 +1,11 @@
+<div *ngIf="fadeDisplay"
+  class="fade-container"
+  [class.opacity-1]="fadeOpacity"
+  [class.display-inline-block]="isDisplayInlineBlock"
+  [class.display-inline]="isDisplayInline"
+  [class.display-block]="isDisplayBlock"
+  [class.transition-1]="isTransition1"
+  [class.transition-2]="isTransition2">
+
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>

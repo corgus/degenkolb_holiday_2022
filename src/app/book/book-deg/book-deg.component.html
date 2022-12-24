@@ -1,0 +1,586 @@
+<div class="book-carousel"
+  [class.is-front]="isClosedFront"
+  [class.is-back]="isClosedBack"
+  [class.is-open]="!isClosedBack && !isClosedBack">
+
+  <div class="pages" *ngIf="pages" >
+
+
+    <ss-book-page
+      [ssIndex]="0"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+      <ss-book-page-content pageFront>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack >
+        <div class="deg-note-container">
+          <div class="deg-note">
+            <p>
+              What an exciting year 2022 has been! Ginger and I are ready for a short break before the start of 2023 and all the interesting things to come.  It looks like we need to finish some RFI’s for Superintendent and the Architects.  Can you help us? Just fill in the blanks and we’ll do the rest.
+            </p>
+
+            <p>
+              Thanks! Deg
+            </p>
+          </div>
+
+          <div class="deg-invalid-note"
+            [ngClass]="{'is-hidden': !isInvalid }">
+            <p>
+              * Please fill in all words!
+            </p>
+          </div>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="2"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+      <ss-book-page-content pageFront>
+        <div class="deg-form-container">
+          <div class="deg-form"
+            [formGroup]="form"
+            (click)="handleClickForm($event)"
+            (onSubmit)="handleSubmit()">
+
+            <ng-container *ngFor="let prompt of madlibPrompts; let i = index">
+              <div class="deg-form-field">
+                <mat-form-field
+                  [ngClass]="{'mat-form-field-should-float': shouldFloatInputLabel[i] }"
+                  appearance="standard">
+
+                  <mat-label
+                    for="controlNameFromIndex(i)">
+                      {{ madlibPrompts[i] }}
+                  </mat-label>
+
+                  <input matInput
+                    [formControlName]="controlNameFromIndex(i)"
+                    (keyup)="handleInputChange($event, i)">
+                </mat-form-field>
+              </div>
+            </ng-container>
+
+            <div class="deg-button-container">
+              <button class="deg-button--random float-left" (click)="handleSelectRandom()">
+                choose for me
+              </button>
+
+              <button class="deg-button--submit float-right" (click)="handleSubmit()">
+                continue...
+              </button>
+            </div>
+          </div>
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack >
+        <div class="deg-page-text-container">
+          <p>
+            <span class="deg-calligraphy">T</span>was the night before December shutdown <br>
+            and all through the office <br>
+            Not a creature was <span class="deg-selected-word">{{ word(1) }}</span>, not even a SEOR; <br>
+            The headsets were hung by the monitors with care, <br>
+            In hopes that Deg and Ginger were done for the year;
+          </p>
+
+          <p>
+            The engineers were nestled all snug in their beds; <br>
+            While visions of <span class="deg-selected-word">{{ word(2) }}</span> danced in their heads; <br>
+            And Ginger in a hard hat, and Deg in bed, <br>
+            Had just settled for a short week long nap, <br>
+          </p>
+
+          <p>
+            When out on the site there arose such a clatter, <br>
+            Deg sprang from bed to see what was the matter. <br>
+            Away to the window they <span class="deg-selected-word">{{ word(3) }}</span> like a flash, <br>
+            Tore open the shutters and threw up the sash. <br>
+          </p>
+
+          <p>
+            The moon on the breast of the bridge lights below, <br>
+            Gave a lustre of midday to objects below, <br>
+            When what to Ginger’s eyes did appear, <br>
+            But a miniature sleigh and eight architects <br>
+          </p>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="4"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+      <ss-book-page-content pageFront>
+        <div class="deg-image-container">
+          <div class="img-border"></div>
+          <img [src]="images[0]" [class.is-animated]="!!animateIndex[0]" >
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <p>
+            With a little old driver so lively and quick, <br>
+            Deg knew in a moment he must be the Superintendent. <br>
+            More rapid than eagles his coursers they came, <br>
+            And he whistled, and shouted, and called them by line:
+          </p>
+
+          <p>
+            Now, Deepa! now, Heather! now Erik! and Brett! <br>
+            On, Holly! on, Stan! on, Daniel and Kristin! <br>
+            To the top of the stairs, to the top of the wall! <br>
+            Now <span class="deg-selected-word">{{ word(4) }}</span> away! <span class="deg-selected-word">{{ word(4) }}</span> away! <span class="deg-selected-word">{{ word(4) }}</span> away all!
+          </p>
+
+          <p>
+            As leaves that before the wild hurricane fly, <br>
+            When they meet with an obstacle, mount to the sky;
+          </p>
+
+          <p>
+            So up to the loggia the coursers they <span class="deg-selected-word">{{ word(3) }}</span> <br>
+            With the sleigh full of code books and metals, and Super Intendent too— <br>
+            And then, in a twinkling, Ginger heard on the roof <br>
+            The prancing and <span class="deg-selected-word">{{ word(5) }}</span> of each steel-toed boot.
+          </p>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="6"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-image-container">
+          <div class="img-border"></div>
+          <img [src]="images[1]" [class.is-animated]="!!animateIndex[1]">
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <p>
+            As Deg drew in their head, and was turning around, <br>
+            Down the elevator Superintendent came with a bound. <br>
+            He was dressed all in <span class="deg-selected-word">{{ word(6) }}</span>, from his head to his foot, <br>
+            And his clothes were all tarnished with dust and dirt; <br>
+            A bundle of <span class="deg-selected-word">{{ word(7) }}</span> he had flung on his back, <br>
+            And he looked like a welder just opening his pack.
+          </p>
+
+          <p>
+            His I-beams—how they twinkled! his flanges, how merry! <br>
+            His cheeks were like roses, his nose like a cherry! <br>
+            His droll little mouth was shaped like an el-bow, <br>
+            As the light gauge steel went up in a neat little row; <br>
+            And Deg <span class="deg-selected-word">{{ word(8) }}</span> when they saw him; <br>
+            A wink of his eye and a twist of his head <br>
+            Soon gave Deg to know they had nothing to dread;
+          </p>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="8"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-image-container">
+          <div class="img-border"></div>
+          <img [src]="images[2]" [class.is-animated]="!!animateIndex[2]">
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <p>
+            He spoke not a word, but went straight to his work, <br>
+            And closed all the RFIs; then turned with a jerk, <br>
+            And laying his finger aside of his nose, <br>
+            And giving a nod, up the elevator he rose; <br>
+            He sprang to his sleigh, to his team gave a whistle, <br>
+            And away they all <span class="deg-selected-word">{{ word(3) }}</span> to find the building official. <br>
+            But we heard him exclaim, ere he rode out of sight— <br>
+            “Happy New Year and see you next year!”
+          </p>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="10"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-image-container">
+          <div class="img-border"></div>
+          <!-- <ss-video
+            [ngClass]="{'is-animated': animateIndex[3] }"
+            [ssSrc]="images[3]">
+          </ss-video> -->
+
+          <img [src]="images[3]" [class.is-animated]="!!animateIndex[3]">
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+
+          <div class="deg-share-container">
+            <div class="deg-share-content">
+
+              <div class="deg-share-link"
+                (click)="handleShareLinkSelect($event)">
+                <!-- <input class="deg-share-link-input"
+                  [value]="shareLink"> -->
+                <div class="deg-share-link-button">
+                  {{ shareLink }}
+                </div>
+                  <!-- [placeholder]="shareLink"> -->
+                <div class="deg-share-icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ss-book-page-content>
+
+      <!-- <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [0,1]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </ss-book-page-content> -->
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="12"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+      <ss-book-page-content pageFront>
+        <!-- <div class="credits-list-container credits-flex">
+          <div class="credits-list-title">
+            CREDITS
+          </div>
+        </div> -->
+
+        <div class="deg-page-text-container credits-container"
+          [class.is-animated]="!!animateIndex[4]">
+
+          <div class="credits-container-fade is-top"></div>
+          <div class="credits-container-fade is-bottom"></div>
+
+          <div class="credits-inner">
+            <div class="credits-fade-container">
+              <ng-container *ngFor="let data of creditsDataScroll">
+                <div class="credits-list-container">
+                  <div *ngIf="!data['hide_title']"
+                    class="credits-list-title">
+                    {{ data['category'] }}
+                  </div>
+                  <ul class="credits-list-lines"
+                    [class.single-column]="data['columns'] === 1">
+
+                    <li *ngFor="let line of data['lines']"
+                      class="credits-list-line">{{ line }}
+                    </li>
+                  </ul>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="credits-replay-container"
+              (click)="handleReplayCredits($event)">
+              <span class="credits-replay-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 224c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96H320v32c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-9.2-9.2-22.9-11.9-34.9-6.9S320 19.1 320 32V64H160C71.6 64 0 135.6 0 224zm512 64c0-17.7-14.3-32-32-32s-32 14.3-32 32c0 53-43 96-96 96H192V352c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V448H352c88.4 0 160-71.6 160-160z"/></svg>
+              </span>
+              <span class="credits-replay-text">replay credits</span>
+            </div>
+          </div>
+
+          <!-- <div class="credits-list-container credits-flex">
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Original Source Material
+              </div>
+              <ul class="credits-list-lines single-column">
+                <li class="credits-list-line">
+                  A Visit from St. Nicholas <br/>
+                  by Clement Clarke Moore
+                </li>
+              </ul>
+            </div>
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Creative
+              </div>
+              <ul class="credits-list-lines one-column">
+                <li class="credits-list-line">
+                  lowercase productions
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
+        </div>
+      </ss-book-page-content>
+
+      <!-- <ss-book-page-content pageFront>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [7,8,9,10]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+
+          <div class="credits-list-container credits-flex">
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Original Source Material
+              </div>
+              <ul class="credits-list-lines one-column">
+                <li class="credits-list-line">
+                  A Visit from St. Nicholas <br/>
+                  by Clement Clarke Moore
+                </li>
+              </ul>
+            </div>
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Creative
+              </div>
+              <ul class="credits-list-lines one-column">
+                <li class="credits-list-line">
+                  lowercase productions
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ss-book-page-content> -->
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container deg-back-cover">
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+
+    <!-- <ss-book-page
+      [ssIndex]="10"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-image-container">
+          <div class="img-border"></div>
+
+          <img [ngClass]="{'is-animated': animateIndex[3] }" [src]="images[3]">
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [0,1]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="12"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [2,3,4]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [5,6]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+
+    <ss-book-page
+      [ssIndex]="14"
+      [ssOptions]="options"
+      [ssTotalPages]="totalPages"
+      (onPageFlipping)="handlePageFlipping($event)" >
+
+
+      <ss-book-page-content pageFront>
+        <div class="deg-page-text-container">
+          <ng-container *ngFor="let i of [7,8,9,10]">
+            <div class="credits-list-container">
+              <div *ngIf="!creditsData[i]['hide_title']"
+                class="credits-list-title">
+                {{ creditsData[i]['category'] }}
+              </div>
+              <ul class="credits-list-lines">
+                <li *ngFor="let line of creditsData[i]['lines']"
+                  class="credits-list-line">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+
+          <div class="credits-list-container credits-flex">
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Original Source Material
+              </div>
+              <ul class="credits-list-lines one-column">
+                <li class="credits-list-line">
+                  A Visit from St. Nicholas <br/>
+                  by Clement Clarke Moore
+                </li>
+              </ul>
+            </div>
+            <div class="credits-half">
+              <div class="credits-list-title">
+                Creative
+              </div>
+              <ul class="credits-list-lines one-column">
+                <li class="credits-list-line">
+                  lowercase productions
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ss-book-page-content>
+
+      <ss-book-page-content pageBack>
+        <div class="deg-page-text-container deg-back-cover">
+        </div>
+      </ss-book-page-content>
+    </ss-book-page>
+  </div> -->
+
+
+
+
+<!--   <div class="pages" *ngIf="pages" >
+    <ng-container *ngFor="let content of pageContent; let index = index">
+      <ng-container *ngIf="index % 2 === 0">
+        <ss-book-page
+          [ssIndex]="index"
+          [ssResetPages]="resetPages"
+          [ssOptions]="options"
+          [ssPages]="pageContent"
+          (onPageFlipping)="handlePageFlipping($event)" >
+
+          <ng-content front>
+          </ng-content>
+
+          <ng-content back>
+          </ng-content>
+        </ss-book-page>
+      </ng-container>
+    </ng-container>
+  </div> -->
+
+  <!-- <div class="is-hidden"> -->
+  <!-- <ng-content></ng-content> -->
+    <!-- <ng-container *ngFor="let content of pages; let index = index">
+      <ss-book-page-content
+        ssIsTemplate=false>
+        {{ content }}
+      </ss-book-page-content>
+    </ng-container> -->
+  <!-- </div> -->
+</div>

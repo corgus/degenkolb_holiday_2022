@@ -1,0 +1,58 @@
+@import '../resources';
+
+
+.pez-default {
+  @extend %pez-default;
+}
+
+.pez-blue {
+  @extend %pez-blue;
+}
+
+.pez-blue-2 {
+  @extend %pez-blue-2;
+}
+
+// OTHER
+
+
+
+.pez-icon {
+  @extend %pez-icon;
+}
+
+.pez-icon-only {
+  @extend %pez-icon-only;
+}
+
+.pez-icon-default {
+  @extend %pez-icon;
+  border: 1px solid rgba($cBlack, 0.15);
+  box-shadow: inset -1px -1px 3px 1px rgba(darken($cBgBase, 70%), 0.04);
+  background-color: $cBgBase;
+  color: $cBlack4;
+
+  &:not(.is-disabled):hover {
+    color: $cTextBase;
+  }
+}
+
+.pez-icon-text-lighter {
+  @extend %pez-icon;
+  // background-color: $cBlack6Opaque;
+  background-color: $cTextLight1;
+  color: $cWhite;
+}
+
+.pez-icon-light-gray {
+  @extend %pez-icon;
+  background-color: $cBlack6Opaque;
+  color: $cWhite;
+}
+
+.pez-icon-dark-gray {
+  @extend %pez-icon;
+  background-color: $cBlack4Opaque;
+  color: $cWhite;
+}
+

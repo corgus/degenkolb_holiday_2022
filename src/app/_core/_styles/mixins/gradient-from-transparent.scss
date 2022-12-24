@@ -1,0 +1,49 @@
+
+@mixin gradientFromTransparent($color, $end) {
+  // background: -webkit-linear-gradient(
+  //   top,
+  //   rgba($color, 1) 0 * $end,
+  //   rgba($color, 0.3) 0.50 * $end,
+  //   rgba($color, 0.15) 0.65 * $end,
+  //   rgba($color, 0.075) 0.755 * $end,
+  //   rgba($color, 0.037) 0.8285 * $end,
+  //   rgba($color, 0.019) 0.88 * $end,
+  //   rgba($color, 0) 0.100 * $end
+  // );
+
+  // background: -webkit-linear-gradient(
+  //   top,
+  //   rgba($color, 1) 0 * $end,
+  //   rgba($color, 0.3) 0.50 * $end,
+  //   rgba($color, 0.15) 0.65 * $end,
+  //   rgba($color, 0.075) 0.755 * $end,
+  //   rgba($color, 0.037) 0.8285 * $end,
+  //   rgba($color, 0.019) 0.88 * $end,
+  //   rgba($color, 0) 0.100 * $end
+  // );
+
+  // FROM TRANSPARENT TO SOLID
+  background: top linear-gradient(
+    rgba($color, 0) 0 * $end,
+    rgba($color, 0.019) 0.50 * $end,
+    rgba($color, 0.037) 0.65 * $end,
+    rgba($color, 0.075) 0.755 * $end,
+    rgba($color, 0.15) 0.8285 * $end,
+    rgba($color, 0.3) 0.88 * $end,
+    rgba($color, 1) 1 * $end
+  );
+
+  // FROM SOLID TO TRANSPARENT
+  // background-image: linear-gradient(
+  //   rgba($color, 1) 0 * $end,
+  //   rgba($color, 0.3) 0.50 * $end,
+  //   rgba($color, 0.15) 0.65 * $end,
+  //   rgba($color, 0.075) 0.755 * $end,
+  //   rgba($color, 0.037) 0.8285 * $end,
+  //   rgba($color, 0.019) 0.88 * $end,
+  //   rgba($color, 0) 1 * $end
+  // );
+
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color, endColorstr=$color,GradientType=0 ); /* IE6-9 */
+
+}

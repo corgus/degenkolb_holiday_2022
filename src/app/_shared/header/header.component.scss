@@ -1,0 +1,28 @@
+@import '../../_core/_styles/resources';
+
+.header-container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.header {
+  background: black;
+  color: rgba(white, 0.8);
+  line-height: 20px;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.header-button {
+  font-weight: 400;
+
+  &:hover:not(.is-active) {
+    background: rgba(white, 0.15);
+  }
+
+  &.is-active {
+    background: rgba(white, 0.2);
+    cursor: default;
+  }
+}

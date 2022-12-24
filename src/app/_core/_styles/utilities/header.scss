@@ -1,0 +1,142 @@
+@import '../resources';
+
+$headerItemPadding: 8px;
+$btnHeaderPadding: 6px 12px 4px;
+
+$boxShadowStartHereBorder: $boxShadow1px rgba($cBlueDark2, 0.3);
+
+// note: must be <a> for first-of-type and last-of-type
+a.header-item {
+  @include ellipsis(250px);
+
+  display: inline-block;
+  vertical-align: bottom;
+  height: 100%;
+  padding-left: $headerItemPadding;
+  padding-right: $headerItemPadding;
+
+  color: $cWhite5;
+  font-size: $fontSizeBase;
+  line-height: 44px;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+
+  // &:first-of-type {
+  //   margin-left: -$headerItemPadding;
+  // }
+
+  // &:last-of-type {
+  //   margin-right: -$headerItemPadding;
+  // }
+
+  &:not(.is-active).is-hovered,
+  &:not(.is-active):hover {
+    border-bottom: 3px solid $cWhite6;
+  }
+
+  &.is-active {
+    border-bottom: 3px solid $cWhite2;
+    cursor: default;
+  }
+}
+
+
+a.header-item.light-background {
+  color: $cTextBase;
+
+  &:not(.is-active).is-hovered,
+  &:not(.is-active):hover {
+    border-bottom: 3px solid $cBlueBase;
+  }
+
+  &.is-active {
+    border-bottom: 3px solid $cBlueBase;
+    cursor: default;
+  }
+}
+
+a.header-item.dark-background {
+  color: $cWhite5;
+
+  &:not(.is-active).is-hovered,
+  &:not(.is-active):hover {
+    border-bottom: 3px solid $cWhite6;
+  }
+
+  &.is-active {
+    border-bottom: 3px solid $cWhite2;
+    cursor: default;
+  }
+}
+
+
+button.header-button--log-in {
+  @extend %btn-header-secondary;
+  margin: 0 !important;
+  // margin: 0 !important;
+}
+
+
+button.header-button--log-in.light-background {
+  color: $cTextBase;
+  box-shadow: 0 0 0 -1px rgba($cBlueDark2, 0.3);
+
+  &:hover {
+    color: $cBlueDark1;
+    box-shadow: $boxShadow1px rgba($cBlueDark2, 0.3),
+                1px 7px 6px -7px rgba($cBlueDark2, 0.7);
+  }
+}
+
+button.header-button--start-here {
+  @extend %btn-header-primary;
+}
+
+@include media(sm) {
+  button.header-button--start-here {
+    margin-left: 8px !important;
+  }
+}
+
+button.header-button--start-here.light-background {
+  background: rgba($cWhite, 0.75);
+  color: $cTextBase;
+  box-shadow: $boxShadowStartHereBorder,
+              0 1px 2px 1px rgba($cBlueDark2, 0.15);
+              // 0 2px 3px -2px rgba($cBlueDark2, 0.7);
+  margin-left: 13px !important;
+
+  &:hover {
+    // background-color: lighten($cBgHover, 20%);
+    background-color: rgba(#D5E8F8, 0.65);
+    color: $cBlueDark2;
+    box-shadow: $boxShadowStartHereBorder,
+                0 2px 2px -1px rgba($cBlueDark2, 0.4),
+                1px 7px 6px -7px rgba($cBlueDark2, 0.7);
+                // 0 9px 5px -10px rgba($cBlueDark2, 0.7); // 0 2px 4px -3px rgba($cBlueDark2, 0.7)
+  }
+}
+
+.header-button--start-here.dark-background {
+  background: $cWhite2;
+  color: $cBgHeader;
+  margin-left: 10px !important;
+
+  &:hover {
+    background: $cWhite;
+  }
+}
+
+.header-item.header-avatar-item {
+  padding-top: 6px;
+}
+
+.header-avatar-container {
+  margin-top: 7px;
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px $cBlack4;
+}

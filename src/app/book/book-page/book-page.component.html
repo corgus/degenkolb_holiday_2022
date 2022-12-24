@@ -1,0 +1,92 @@
+<!-- <div class="padding-30">
+  <em class="color-red">[[ {{ constructor.name }} ]]</em>
+</div>
+ -->
+
+<div class="page"
+  [ngClass]="pageClass">
+
+  <div class="flip-container"
+    [style.z-index]="zIndex"
+    [class.is-flipped]="isFlipped"
+    [class.is-flipping]="isFlipping">
+
+    <div class="flipper">
+      <div class="front"
+        [class.is-first]="isFirst"
+        (click)="flipPage($event)">
+
+        <div class="book-page-content-container"
+          [class.is-first]="isFirst">
+          <!-- <ss-book-page-content
+            [ssOptions]="options"
+            [ssPageContent]="front"
+            [ssIsTemplate]="false">
+          </ss-book-page-content> -->
+          <!-- {{ front | json }} -->
+          <ng-content select="[pageFront]"></ng-content>
+        </div>
+      </div>
+
+      <div class="back"
+        [class.is-last]="isLast"
+        (click)="flipPage($event)">
+
+        <div class="book-page-content-container">
+          <!-- <ss-book-page-content
+            [ssOptions]="options"
+            [ssPageContent]="back"
+            [ssIsTemplate]="false">
+          </ss-book-page-content> -->
+          <!-- {{ back | json }} -->
+
+          <ng-content select="[pageBack]"></ng-content>
+        </div>
+
+        <!-- <div class="page-white-bg"></div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-container"
+    *ngIf="isFirst || isLast"
+    [style.z-index]="zIndex - 1"
+    [class.is-flipped]="isFlipped"
+    [class.is-flipping]="isFlipping">
+    <div class="cover">
+      <div class="front"
+        [style.z-index]="zIndex - 3"
+        [class.is-first]="isFirst"
+        [style.background-image]="isFirst ? coverUrlFront : coverUrlInner">
+      </div>
+
+      <!-- <div class="page-white-bg"
+        [style.z-index]="zIndex - 2"></div> -->
+
+      <div class="page-white-bg"
+        [style.z-index]="zIndex - 4"></div>
+
+      <div class="back"
+        [style.z-index]="zIndex - 1"
+        [class.is-last]="isLast"
+        [style.background-image]="isLast ? coverUrlBack : coverUrlInner"
+        [style.opacity]="coverOpacityBack">
+      </div>
+
+      <div class="page-white-bg"
+        [style.z-index]="zIndex - 2"
+        [style.opacity]="coverOpacityBack"></div>
+
+      <!-- <div class="inner"
+        [style.z-index]="zIndex - 1"
+        [class.is-last]="isLast"
+        [style.background-image]="coverUrlInner"
+        [style.opacity]="coverOpacityInner">
+      </div> -->
+
+      <!-- <div class="page-white-bg-back"
+        [style.z-index]="zIndex - 2"
+        [style.opacity]="coverOpacityBack"></div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+@import '../resources';
+
+tooltip .tooltip-contents {
+  border: 1px solid $cBorderA;
+  background: white;
+  box-shadow: 0 5px 5px -3px rgba(black, 0.2);
+  padding: 5px;
+  border-radius: 3px;
+  @include font(sans-serif);
+  font-size: 12px;
+}
+tooltip .tooltip-down-arrow {
+  height: 10px;
+}
+tooltip .tooltip-down-arrow:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 45%;
+  bottom: 5px;
+  background: white;
+  border-left:1px solid $cBorderA;
+  border-bottom:1px solid $cBorderA;
+  transform:rotate(-45deg);
+  box-shadow: -3px 3px 5px -3px rgba(black, 0.2);
+}

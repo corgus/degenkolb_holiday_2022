@@ -1,0 +1,148 @@
+@import '../resources';
+
+
+// note: similar to $boxShadowCard: $boxShadowCardBorder, $boxShadowCardShadow;
+
+$boxShadowCardStackTop: inset $boxShadow1px rgba($cBlueDark3, 0.18),
+                        inset 0 -2px 0 -1px rgba(0, 40, 70, 0.15),
+                        0px 6px 6px -9px rgba($cBlueDark3, 0.8),
+                        inset -1px -1px 0 0 rgba($cBlueDark3, 0.1);
+$boxShadowCardStackTopHover: inset $boxShadow1px rgba($cBlueDark3, 0.18),
+                        inset 0 -2px 0 -1px rgba(0, 40, 70, 0.15),
+                        -5px 4px 20px -5px rgba($cBlueDark2, 0.3),
+                        inset 0 -0.5px 0 0.8px rgba($cBlack, 0.35);
+$cardStackHoverRight: 3%;
+$cardStackHoverLeft: 0;
+$cardStackBgBase: #e5f0f3;
+
+
+.card-container.is-active .card-single,
+.card-container.is-active .card-stack-top {
+  border-left: 10px solid rgba($cBlueDark1, 0.9);
+  cursor: default;
+  margin-left: 0;
+  margin-right: -10px;
+  box-shadow: $boxShadowCardHover3;
+}
+
+.card-container:hover:not(.is-active) .card-single,
+// .card-container:hover .card-stack-top,
+.card-container:not(.is-active) .card-single.is-within-sidebar:hover,
+.card-container:not(.is-active) .card-stack-top.is-within-sidebar:hover {
+// .card-container.is-active .card-single {
+// .card-container.is-active .card-stack-top {
+  @extend %cardHoverSidebar;
+
+  .card-cover-image {
+    box-shadow: $boxShadowCardHover;
+  }
+}
+
+.card-single:not.is-within-sidebar:hover {
+  @extend %cardHover;
+}
+
+.card-single {
+  cursor: pointer;
+  transition: $cardTransition;
+  background: $cWhite;
+  border-radius: $borderRadiusCard;
+  overflow: hidden;
+  box-shadow: $boxShadowCard;
+
+  &.is-within-sidebar {
+    box-shadow: $boxShadowCardSidebar;
+  }
+}
+
+.card-stack {
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+  transition: $cardStackTransition;
+  // left: 4px;
+}
+
+.card-stack::before,
+.card-stack::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: $cardStackTransition;
+
+  // box-shadow: 0.5px 1px 4px -1px rgba($cBlueDark3, 0.30);
+}
+
+/* Second in stack */
+.card-stack::before {
+  left: $cardStackOffsetH;
+  top: $cardStackOffsetV;
+  width: 98%;
+  background-color: $cWhite;
+  border-radius: $borderRadiusCard + 1;
+  box-shadow: 0.5px 1px 4px -1px rgba($cBlueDark3, 0.40);
+  // box-shadow: -0.5px 1px 4px -1px rgba($cBlueDark3, 0.30);
+  z-index: -1;
+}
+
+/* Third in stack */
+.card-stack::after {
+  left: 2 * $cardStackOffsetH;
+  top: 2 * $cardStackOffsetV;
+  width: 96%;
+  border-radius: $borderRadiusCard + 2;
+  background-color: $cWhite;
+  box-shadow: 0.5px 1px 4px -1px rgba($cBlueDark3, 0.30);
+  // box-shadow: 0.5px 1px 4px -1px rgba($cBlueDark3, 0.30);
+  z-index: -2;
+}
+
+
+.card-stack-top {
+  cursor: pointer;
+  transition: $cardStackTransition;
+  background-color: white;
+  word-wrap: break-word;
+  height: 100%;
+  z-index: 1;
+  border-radius: $borderRadiusCard;
+  box-shadow: $boxShadowCardShadow,
+               1px 0px 1px -1px rgba($cBlack, 0.3),
+               3px 1px 20px -8px rgba($cBlueDark2, 0.35),
+               0.1px 0.3px 0 0.4px rgba($cBlueDark2, 0.2),
+                -0.5px 1px 4px -1px rgba($cBlueDark3, 0.20);
+  overflow: hidden;
+}
+
+.card-stack:hover {
+  .card-stack-top {
+    margin: 0px ;
+    margin-right: -$cardStackHoverRight;
+    margin-left: $cardStackHoverRight;
+    box-shadow: $boxShadowCardStackSidebarHoverTop;
+                //$boxShadowCardSidebar,
+                // -10px 15px 30px -20px rgba($cBlueDark2, 0.25),
+                // -0.5px 1px 4px -1px rgba($cBlueDark3, 0.20);
+  }
+  &::before {
+    left: -$cardStackOffsetH + $cardStackHoverRight - $cardStackHoverLeft;
+    box-shadow: -0.5px 1px 4px -1px rgba($cBlueDark2, 0.40);
+    // box-shadow: -0.5px 1px 4px -1px rgba($cBlueDark3, 0.40);
+  }
+  &::after {
+    left: -2 * $cardStackOffsetH + $cardStackHoverRight - 2*$cardStackHoverLeft;
+    box-shadow: -0.5px 1px 4px -1px rgba($cBlueDark2, 0.30);
+  }
+}
+
+.card-flex-container {
+  height: 100%;
+  padding: 0 10px 30px 10px;
+}
+
+@include media(sm) {
+  .card-flex-container {
+    padding: 0 5px 25px 0;
+  }
+}

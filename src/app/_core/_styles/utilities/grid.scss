@@ -1,0 +1,224 @@
+@import '../resources';
+
+// based on Pure v0.6.0
+// Copyright 2014 Yahoo! Inc. All rights reserved.
+// https://github.com/yahoo/pure/blob/master/src/grids/css/grids-core.css
+
+// /*csslint regex-selectors:false, known-properties:false, duplicate-properties:false*/
+
+.grid-r {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 10px 0 8px; //0 12px;
+
+  box-sizing: content-box;
+
+  letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
+  *letter-spacing: normal; /* reset IE < 8 */
+  *word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
+  text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
+
+  /*
+  Sets the font stack to fonts known to work properly with the above letter
+  and word spacings. See: https://github.com/yahoo/pure/issues/41/
+  The following font stack makes Pure Grids work on all known environments.
+  * FreeSans: Ships with many Linux distros, including Ubuntu
+  * Arimo: Ships with Chrome OS. Arimo has to be defined before Helvetica and
+    Arial to get picked up by the browser, even though neither is available
+    in Chrome OS.
+  * Droid Sans: Ships with all versions of Android.
+  * Helvetica, Arial, sans-serif: Common font stack on OS X and Windows.
+  */
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+
+  /* Use flexbox when possible to avoid `letter-spacing` side-effects. */
+  display: flex;
+  flex-flow: row wrap;
+
+  /* Prevents distributing space between rows */
+  align-content: flex-start;
+}
+
+/* IE10 display: -ms-flexbox (and display: flex in IE 11) does not work inside a table; fall back to block and rely on font hack */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  table .grid-r {
+    display: block;
+  }
+}
+
+.grid-r-stretch {
+  align-items: stretch;
+}
+
+/* Opera as of 12 on Windows needs word-spacing.
+   The ".opera-only" selector is used to prevent actual prefocus styling
+   and is not required in markup.
+*/
+.opera-only :-o-prefocus,
+.grid-r {
+    word-spacing: -0.43em;
+}
+
+// Resets the font family back to the OS/browser's default sans-serif font,
+// this the same font stack that Normalize.css sets for the `body`.
+.grid-r [class*="grid-c"],
+.grid-r [class*="grid-flex"] {
+  @include font(sans-serif);
+}
+
+//
+// MISC
+//
+
+// Full-width option for small screens
+@include media(sm) {
+  .grid-r-full-sm {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+//
+// CORE
+//
+
+*[class^='grid-c'] {
+  padding: 0 6px;
+  position: relative;
+
+  display: inline-block;
+  *display: inline; /* IE < 8: fake inline-block */
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+
+*[class^='grid-c-flex'] {
+  padding: 0 6px;
+  position: relative;
+
+  display: flex;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+
+.grid-c-1-12,
+.grid-c-flex-1-12  { width: 8.3333%;   *width: 8.3023%; }
+.grid-c-2-12,
+.grid-c-1-6,
+.grid-c-flex-1-6 { width: 16.6667%;  *width: 16.6357%; }
+.grid-c-1-4,
+.grid-c-3-12  { width: 25%;       *width: 24.969%; }
+.grid-c-1-3,
+.grid-c-2-6,
+.grid-c-4-12  { width: 33.3333%;  *width: 33.3023%; }
+.grid-c-5-12  { width: 41.6667%;  *width: 41.6357%; }
+.grid-c-1-2,
+.grid-c-2-4,
+.grid-c-3-6,
+.grid-c-6-12  { width: 50%;       *width: 49.969%; }
+.grid-c-7-12  { width: 58.3333%;  *width: 58.3023%; }
+.grid-c-2-3,
+.grid-c-flex-2-3,
+.grid-c-4-6,
+.grid-c-8-12  { width: 66.6667%; *width: 66.6357%; }
+.grid-c-3-4,
+.grid-c-flex-3-4,
+.grid-c-9-12  { width: 75%;      *width: 74.969%; }
+.grid-c-10-12,
+.grid-c-5-6,
+.grid-c-flex-5-6 { width: 83.3333%; *width: 83.3023%; }
+.grid-c-11-12,
+.grid-c-flex-11-12 { width: 91.6667%; *width: 91.6357%; }
+.grid-c-1,
+.grid-c-flex-1,
+.grid-c       { width: 100%; }
+
+@include media(sm) {
+  .grid-c-1-12-sm  { width: 8.3333%;   *width: 8.3023%; }
+  .grid-c-2-12-sm,
+  .grid-c-1-6-sm  { width: 16.6667%;  *width: 16.6357%; }
+  .grid-c-1-4-sm,
+  .grid-c-3-12-sm  { width: 25%;       *width: 24.969%; }
+  .grid-c-1-3-sm,
+  .grid-c-2-6-sm,
+  .grid-c-4-12-sm  { width: 33.3333%;  *width: 33.3023%; }
+  .grid-c-5-12-sm  { width: 41.6667%;  *width: 41.6357%; }
+  .grid-c-1-2-sm,
+  .grid-c-2-4-sm,
+  .grid-c-3-6-sm,
+  .grid-c-6-12-sm  { width: 50%;       *width: 49.969%; }
+  .grid-c-7-12-sm  { width: 58.3333%;  *width: 58.3023%; }
+  .grid-c-2-3-sm,
+  .grid-c-4-6-sm,
+  .grid-c-8-12-sm  { width: 66.6667%; *width: 66.6357%; }
+  .grid-c-3-4-sm,
+  .grid-c-9-12-sm  { width: 75%;      *width: 74.969%; }
+  .grid-c-10-12-sm,
+  .grid-c-5-6-sm   { width: 83.3333%; *width: 83.3023%; }
+  .grid-c-11-12-sm { width: 91.6667%; *width: 91.6357%; }
+  .grid-c-1-sm     { width: 100%; }
+  .grid-c-0-sm     { padding-left: 0; padding-right: 0;}
+  .grid-c-full-sm  { width: 100%; padding-left: 0; padding-right: 0;}
+}
+
+@include media(md) {
+  .grid-c-1-12-md  { width: 8.3333%;   *width: 8.3023%; }
+  .grid-c-2-12-md,
+  .grid-c-1-6-md  { width: 16.6667%;  *width: 16.6357%; }
+  .grid-c-1-4-md,
+  .grid-c-3-12-md  { width: 25%;       *width: 24.969%; }
+  .grid-c-1-3-md,
+  .grid-c-2-6-md,
+  .grid-c-4-12-md  { width: 33.3333%;  *width: 33.3023%; }
+  .grid-c-5-12-md  { width: 41.6667%;  *width: 41.6357%; }
+  .grid-c-1-2-md,
+  .grid-c-2-4-md,
+  .grid-c-3-6-md,
+  .grid-c-6-12-md  { width: 50%;       *width: 49.969%; }
+  .grid-c-7-12-md  { width: 58.3333%;  *width: 58.3023%; }
+  .grid-c-2-3-md,
+  .grid-c-4-6-md,
+  .grid-c-8-12-md  { width: 66.6667%; *width: 66.6357%; }
+  .grid-c-3-4-md,
+  .grid-c-9-12-md  { width: 75%;      *width: 74.969%; }
+  .grid-c-10-12-md,
+  .grid-c-5-6-md { width: 83.3333%; *width: 83.3023%; }
+  .grid-c-11-12-md { width: 91.6667%; *width: 91.6357%; }
+  .grid-c-1-md     { width: 100%; }
+  .grid-c-0-md     { padding-left: 0; padding-right: 0;}
+  .grid-c-full-md  { width: 100%; padding-left: 0; padding-right: 0;}
+}
+
+@include media(lg) {
+  .grid-c-1-12-lg  { width: 8.3333%;   *width: 8.3023%; }
+  .grid-c-2-12-lg,
+  .grid-c-1-6-lg  { width: 16.6667%;  *width: 16.6357%; }
+  .grid-c-1-4-lg,
+  .grid-c-3-12-lg  { width: 25%;       *width: 24.969%; }
+  .grid-c-1-3-lg,
+  .grid-c-2-6-lg,
+  .grid-c-4-12-lg  { width: 33.3333%;  *width: 33.3023%; }
+  .grid-c-5-12-lg  { width: 41.6667%;  *width: 41.6357%; }
+  .grid-c-1-2-lg,
+  .grid-c-2-4-lg,
+  .grid-c-3-6-lg,
+  .grid-c-6-12-lg  { width: 50%;       *width: 49.969%; }
+  .grid-c-7-12-lg  { width: 58.3333%;  *width: 58.3023%; }
+  .grid-c-2-3-lg,
+  .grid-c-4-6-lg,
+  .grid-c-8-12-lg  { width: 66.6667%; *width: 66.6357%; }
+  .grid-c-3-4-lg,
+  .grid-c-9-12-lg  { width: 75%;      *width: 74.969%; }
+  .grid-c-10-12-lg,
+  .grid-c-5-6-lg   { width: 83.3333%; *width: 83.3023%; }
+  .grid-c-11-12-lg { width: 91.6667%; *width: 91.6357%; }
+  .grid-c-1-lg     { width: 100%; }
+  .grid-c-0-lg     { padding-left: 0; padding-right: 0;}
+  .grid-c-full-lg  { width: 100%; padding-left: 0; padding-right: 0;}
+}

@@ -1,0 +1,234 @@
+@import '../variables/index';
+
+
+%button {
+  @include font(sans-serif);
+  display: inline-block;
+  position: relative; // for optional loading animation positioning
+  padding: $paddingBtnDefault;
+  border: none;
+  border-radius: 100px; // 20px; // 22px/20px; <= fix sub-px artifacts
+  font-size: $fontSizeBase;
+  line-height: $lineHeightBase180;
+  cursor: pointer;
+  transition: $btnTransitionDefault;
+  bottom: 0;
+  margin-right: 15px;
+
+  &:focus:not(:active) {
+    outline: none;
+    box-shadow: $boxShadowButtonSecondaryFocus;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  // &:not(:last-of-type) {
+  //   margin-right: 15px;
+  // }
+
+  &.is-loading,
+  &.is-loading:disabled,
+  &.is-loading:disabled:hover {
+    cursor: wait;
+  }
+
+  &:not(.is-loading):disabled,
+  &:not(.is-loading):disabled:hover,
+  &:not(.is-loading).is-disabled,
+  &:not(.is-loading).is-disabled:hover {
+    cursor: not-allowed;
+  }
+}
+
+%btn-sm {
+  @extend %button;
+
+  padding: $paddingBtnSm;
+  font-size: 13px; //$fontSizeSmall;
+}
+
+%btn-sm-default {
+  @extend %btn-sm;
+}
+
+%btn-primary-base {
+  @extend %button;
+
+  &:focus:not(:active) {
+    box-shadow: $boxShadowButtonPrimaryFocus;
+  }
+
+  &.is-loading,
+  &.is-loading:disabled,
+  &.is-loading:disabled:hover {
+    color: rgba($cWhite, 0.3);
+    box-shadow: $boxShadowButtonPrimaryDisabled;
+  }
+
+  &:not(.is-loading):disabled,
+  &:not(.is-loading):disabled:hover,
+  &:not(.is-loading).is-disabled,
+  &:not(.is-loading).is-disabled:hover {
+    color: white;
+    background-color: rgba($cBlueDark2, 0.2);
+    box-shadow: $boxShadowButtonPrimaryDisabled; // $boxShadowButtonSecondary;
+    // text-shadow: 0.5px 0.5px 2px rgba($cBlack, 0.1);
+  }
+}
+
+%btn-primary-full {
+  @extend %btn-primary-base;
+  color: $cWhite;
+  background-color: $cBlueBase;
+  box-shadow: $boxShadowButtonPrimary;
+
+  &:hover {
+    background-color: $cBlueLight1;
+    box-shadow: $boxShadowButtonPrimaryHover;
+    // text-shadow: 0.1px 0.2px 2px 0 rgba($cBlueDark1, 0.2);
+  }
+}
+
+%btn-primary--over-map {
+  @extend %btn-primary-base;
+  color: $cWhite;
+  background-color: $cBlueBase;
+  box-shadow: $boxShadowButtonPrimaryOverMap;
+
+  &:hover {
+    background-color: $cBlueLight1;
+    box-shadow: $boxShadowButtonPrimaryOverMapHover;
+    // text-shadow: 0.1px 0.2px 2px 0 rgba($cBlueDark1, 0.2);
+  }
+}
+
+%btn-secondary-base {
+  @extend %button;
+  background-color: $cWhite;
+  // color: $cTextBase;
+  // box-shadow: $boxShadowButtonSecondary;
+  &:focus:not(:active) {
+    box-shadow: $boxShadowButtonSecondaryFocus;
+  }
+
+  &.is-loading,
+  &.is-loading:disabled,
+  &.is-loading:disabled:hover {
+    color: rgba($cTextBase, 0.5);
+    background-color: transparent;
+  }
+
+  &:not(.is-loading):disabled,
+  &:not(.is-loading):disabled:hover,
+  &:not(.is-loading).is-disabled,
+  &:not(.is-loading).is-disabled:hover {
+    color: $cBlack7;
+    background-color: transparent;
+    // border-color: $cGrayLight1;
+    // box-shadow: 0 0 0 -1px $cGrayLight1;
+    box-shadow: $boxShadowButtonSecondaryDisabled;
+  }
+}
+
+%btn-secondary-full {
+  @extend %btn-secondary-base;
+  color: rgba($cTextBase, 0.6);
+  box-shadow: $boxShadowButtonSecondary;
+
+  &:focus:not(:active) {
+    color: $cTextBase;
+    // background-color: rgba($cBlack, 0.01);
+    box-shadow: $boxShadowButtonSecondaryFocus;
+  }
+
+  &:hover {
+    color: $cTextBase;
+    // background-color: rgba($cBlack, 0.01);
+    box-shadow: $boxShadowButtonSecondaryHover;
+  }
+}
+
+%btn-secondary-white {
+  @extend %btn-secondary-base;
+  color: $cTextBase;
+  background-color: $cWhite;
+  box-shadow: $boxShadowButtonSecondary;
+
+  &:focus:not(:active) {
+    box-shadow: $boxShadowButtonSecondaryFocus;
+  }
+  &:hover {
+    box-shadow: $boxShadowButtonSecondaryHover;
+  }
+}
+
+%btn-secondary-dark {
+  @extend %button;
+  background-color: rgba(#555555, 0.8);
+  // border: 1px solid transparent;
+  color: rgba($cWhite, 0.8);
+  font-weight: 300;
+
+  &:hover {
+    background-color: rgba(#666666, 0.9);
+    color: $cWhite;
+  }
+}
+
+%btn-secondary--over-map {
+  @extend %btn-secondary-white;
+  box-shadow: $boxShadowButtonSecondaryOverMap;
+  &:hover {
+    box-shadow: $boxShadowButtonSecondaryOverMapHover;
+  }
+}
+
+
+// fairly similar to 'Start Here' button from header
+
+%btn-icon {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  padding: 6px 0 0;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: $btnTransitionDefault;
+
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+}
+
+%btn-header {
+  @extend %btn-primary-base;
+  vertical-align: baseline;
+  font-size: 14px;
+  line-height: $lineHeightBase180;
+  transition: $btnTransitionDefault;
+  padding: $paddingBtnHeader;
+  margin: 6px 0 0 8px;
+}
+
+%btn-header-primary {
+  @extend %btn-primary-base;
+  @extend %btn-header;
+}
+
+%btn-header-secondary {
+  @extend %btn-secondary-base;
+  @extend %btn-header;
+  color: $cWhite4;
+  background: transparent;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: none;
+    color: $cWhite;
+  }
+}

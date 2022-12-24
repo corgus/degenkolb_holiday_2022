@@ -1,0 +1,41 @@
+@import '../resources';
+
+.ss-tab {
+  display: inline-block;
+  vertical-align: bottom;
+  padding: 7px 12px; // 10px;
+  line-height: $lineHeight130pct;
+  max-width: $tabMaxWidth;
+  margin: 0 $tabSpacing -($tabsBottomBorderWidth) 0;
+  color: $cTextBase;
+  border-bottom: $tabsBottomBorderWidth solid transparent;
+  cursor: default;
+  text-decoration: none;
+  transition: all 300ms ease;
+
+  &.is-active {
+    border-bottom: $tabsBottomBorderWidth solid $cBlueBase;
+  }
+
+  &:not(.is-active):hover {
+    cursor: pointer;
+    border-bottom: $tabsBottomBorderWidth solid $cBlueLight2;
+  }
+
+  // FROM .top-nav-item
+  // &:first-of-type {
+  //   margin-left: -10px;
+  // }
+  span {
+    line-height: $lineHeight130pct;
+  }
+}
+
+.ss-tab-container {
+  display: inline-block;
+  margin-left: -4px;
+
+  &:first-of-type {
+    margin-left: -10px;
+  }
+}

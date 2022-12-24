@@ -1,0 +1,46 @@
+
+@import '../book_resources.scss';
+
+.hidden {
+  opacity: 0;
+}
+
+.book-carousel {
+  box-sizing: border-box;
+  position: relative;
+  height: $book_height;
+  transition: all ease $book_transition_duration;
+  width: 2 * ($book_width + $book_cover_margin_side);
+
+  &.is-front {
+    margin-left: -25%;
+    margin-right: 25%;
+  }
+
+  &.is-back {
+    margin-left: 25%;
+    margin-right: -25%;
+  }
+
+  // &:not(.is-flipping) {
+  //   cursor: pointer;
+  // }
+}
+
+// .is-first {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 50%;
+// }
+
+.is-hidden {
+  opacity: 0;
+}
+
+// @media (min-width: 450px) {
+//   .is-first {
+//     top: 0;
+//     left: 0;
+//   }
+// }

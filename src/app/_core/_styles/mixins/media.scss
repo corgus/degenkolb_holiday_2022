@@ -1,0 +1,43 @@
+@mixin media($media) {
+  @if $media == sm {
+    @media only screen and (max-width: 570px) {
+      @content;
+    }
+  // } @else if $media == mainSm2 {
+  //   @media only screen and (max-width: 900px) {
+  //     @content;
+  //   }
+  } @else if $media == sm_md {
+    @media only screen and (max-width: 1280px) {
+      @content;
+    }
+  } @else if $media == md {
+    @media only screen and (min-width: 571px) {
+      @content;
+    }
+  } @else if $media == lg {
+    @media only screen and (min-width: 1280px) {
+      @content;
+    }
+  } @else if $media == mainSm {
+    @media only screen and (max-width: 900px) {
+      @content;
+    }
+  } @else if $media == mainSmOnly {
+    @media only screen and (min-width: 571px) and (max-width: 900px) {
+      @content;
+    }
+  } @else if $media == mainMd {
+    @media only screen and (min-width: 901px) and (min-width: 1050px) {
+      @content;
+    }
+  } @else if $media == mainLg {
+    @media only screen and (min-width: 1051px) and (min-width: 1350px) {
+      @content;
+    }
+  } @else if $media == short {
+    @media only screen and (max-height: 600px) {
+      @content;
+    }
+  }
+}

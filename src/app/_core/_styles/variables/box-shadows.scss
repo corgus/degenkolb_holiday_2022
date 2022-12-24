@@ -1,0 +1,241 @@
+@import 'colors';
+
+
+
+$boxShadowMatButtonRaised: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+                           0px 2px 2px 0px rgb(0 0 0 / 14%),
+                           0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+$boxShadowMatButtonRaisedHover: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+                           0px 3px 4px 0px rgb(0 0 0 / 10%),
+                           0px 2px 7px 0px rgb(0 0 0 / 15%);
+//
+
+$boxShadowLiftShadow1: 0 0.5px 0.3px 0.5px rgba($cBlueDark2, 0.2);
+$boxShadowLiftActive: $boxShadowLiftShadow1,
+                      0.5px 3px 2px -2.5px $cBlueDark2;
+$boxShadowLift1: 0.5px 3px 3px -2px rgba($cBlueDark2, 0.5); // 0.5px 3px 2px -2.5px rgba($cBlueDark2, 0.5);
+$boxShadowLift2: 1px 9px 4px -9px rgba($cBlueDark2, 0.4);
+$boxShadowLift3: 1px 9px 4px -9px $cBlueDark2;
+$boxShadowLiftInset1: inset 0.5px -3px 2px -2px rgba($cBlueDark2, 0.2); //0.5px 3px 3px -2px rgba($cBlueDark2, 0.5);
+// $boxShadowLiftLight: 0.5px 3px 2px -2.5px rgba($cBlueDark2, 0.3);
+// $boxShadowLift: $boxShadowLift;
+$boxShadow1px: 0 0.3px 0.8px 1.1px;
+$boxShadow1pxBold: 0 0.2px 0.8px 1.5px;
+$boxShadowInset1px: inset 0 -0.3px 0.8px 1.3px;
+$boxShadowInset1pxBold: inset 0 -0.1px 0.8px 1.5px;
+$boxShadowBackgroundShade: 0 20px 70px -20px rgba(10, 50, 70, 0.4);
+$boxShadowBackgroundShadeTransparent: transparent;
+$boxShadowBorderA: $boxShadow1px $cBorderA;
+$boxShadowBorderB: $boxShadow1px $cBorderB;
+
+
+$boxShadowAutocompleteDefault: 0.5px 0 0 1px rgba($cBlack, 0.2),
+                               -0.5px 0 0 1px rgba($cBlack, 0.2);
+$boxShadowAutocompleteOverHeader: 0 0.2px 10px 0 rgba($cBlack, 0.05);
+                                  // 0.5px 0 0 1px $cWhite9,
+                                  // -0.5px 0 0 1px $cWhite9;
+$boxShadowAutocompleteOverTopSuggestions: 0 30px 40px -30px rgba(10, 40, 70, 0.5);
+$boxShadowAutocompleteOverTop: 0 6px 10px -6px rgba(40, 50,70, 0.7);
+
+$boxShadowAutocompleteItemsTop: 0 -1px 0 0 rgba($cBlack, 0.1);
+$boxShadowAutocompleteItemDefault: inset 0 1px 0 0 $cBorderB;
+$boxShadowAutocompleteItemActive: -0.5px 0 0 1px rgba(0,100,149, 0.15),
+                                  0.5px 0 0 1px rgba(0,100,149, 0.15);
+
+$boxShadowAvatarProfileAbout: inset 0 -0.1px 0.8px 1px rgba($cBlack, 0.1); // 0.5px 0.5px 0 1.5px rgba($cBlack, 0.2);
+// $boxShadowAvatarProfilePage: 0 1px 20px 2px rgba($cBlack, 0.3), 0 0 0 2px rgba($cWhite,0.7); //rgba($cWhite,0.5);
+$boxShadowAvatarProfilePage: 0 -1px 0 0px rgba($cBlack, 0.2), 0 2px 5px -2px rgba($cBlack, 0.5); //rgba($cWhite,0.5);
+// 0 1.3px 1px 0.5px rgb(0 0 0 /50%)
+// boxShadowButton
+$boxShadowEmptyOutset:              0 0 0 transparent;
+$boxShadowEmptyOutsetX2:            $boxShadowEmptyOutset;
+$boxShadowEmptyInset:               0 0 0 inset transparent;
+$boxShadowButtonFocusPrimary:       0 0 0.5px 1.5px rgba($cWhite, 0.5),
+                                    0 0 1px 3px $cBlueDark1;
+$boxShadowButtonFocusSecondary:     0 0 2px 1px rgba($cBlack, 10%),
+                                    0 0 0px 2px rgba($cWhite, 80%),
+                                    0 0 1px 3.5px $cBlueBase;
+$boxShadowPillFocus:                0 0.2px 0.5px 2px rgba($cBlueBase, 0.7);
+                                    // -0.5px 0 0px 2px rgba($cWhite, 20%),
+                                    // 0.5px 0 0px 2px rgba($cWhite, 20%),
+                                    // 0 0 1px 3.5px $cBlueBase;
+$boxShadowPezFocus:                 0 0 0px 2px rgba($cWhite, 60%),
+                                    0 0 1px 3.5px rgba($cBlueBase, 0.8);
+                                    // 0 0 2px 1px rgba($cBlack, 20%),
+                                    // 0 0 0px 2px rgba($cWhite, 80%),
+                                    // 0 0 1px 3.5px $cBlueBase;
+                                    // 0 0 0.5px 3.5px $cBlueBase;
+$boxShadowButtonFocusDefault:       0 0 1px 1.5px $cBlueBase;
+
+$boxShadowButtonPrimaryBase:        0.5px 0.5px 0 1px rgba($cBlueDark2, 0.7);
+$boxShadowButtonPrimary:            $boxShadowButtonPrimaryBase;
+$boxShadowButtonPrimaryLight:       0.5px 0.5px 0 1px rgba($cBlueDark2, 0.4);
+
+$boxShadowButtonPrimaryOverMap:     0 7.5px 1px -6px rgba($cBlueDark3, 0.5),
+                                    0.5px 0.5px 3px 0 rgba($cBlack, 0.35);
+
+$boxShadowButtonPrimaryHoverBase:   $boxShadowButtonPrimaryBase,
+                                    $boxShadowLift1;
+$boxShadowButtonPrimaryHoverLight:  $boxShadowButtonPrimaryLight,
+                                    $boxShadowLift1;
+$boxShadowButtonPrimaryHover:       $boxShadowButtonPrimaryHoverBase;
+$boxShadowButtonPrimaryOverMapHover: $boxShadowButtonPrimaryOverMap,
+                                    $boxShadowButtonPrimaryHoverBase;
+
+$boxShadowButtonPrimaryFocus:       $boxShadowButtonFocusPrimary,
+                                    $boxShadowButtonPrimaryHover;
+$boxShadowButtonPrimaryDisabled:    0.5px 0.1px 0.5px 1px rgba($cBlack, 0.2),
+                                    0px 1px 2px -1px rgba(2, 62, 89, 0.3),
+                                    -.5px -1.5px 2.5px 0px rgba(0, 0, 0, 0.05);
+
+$boxShadowButtonSecondaryBase:      $boxShadowEmptyOutsetX2; // used for animating properly
+$boxShadowButtonSecondary:          $boxShadow1px rgba($cBlueDark2, 0.3);
+$boxShadowButtonSecondaryOverMap:   0px 7.5px 1px -6px rgba($cBlueDark3, 0.5),
+                                    0.5px 0.5px 3px 0px rgba($cBlack,0.15);
+// $boxShadowButtonSecondaryHoverBase: $boxShadowButtonSecondaryBase,
+// $boxShadowButtonSecondaryHoverBase: $boxShadowLift1; // $boxShadowLift2; // $boxShadowInset1px rgba($cBlack, 0.05),
+$boxShadowButtonSecondaryHover:     $boxShadowButtonSecondary,
+                                    $boxShadowLift1;
+$boxShadowButtonSecondaryOverMapHover: $boxShadowButtonSecondaryOverMap,
+                                    $boxShadowLift1;
+$boxShadowButtonSecondaryFocus:     $boxShadowButtonFocusSecondary;
+                                    // $boxShadowButtonSecondaryHover;
+$boxShadowButtonSecondaryDisabled:  0.7px 0.8px 1.4px 1.3px rgba($cBlack, 0.08),
+                                    0px 0.2px 1px 0px rgba(2, 62, 89, 0.3),
+                                    0px -1px 1px 0px rgba(0, 0, 0, 0.1);
+
+$boxShadowButtonGreenPrimary: $boxShadowEmptyOutsetX2,
+                              0 0 0.5px 1.3px rgba($cGreenDark2, 0.9);
+$boxShadowButtonGreenPrimaryHover: $boxShadowButtonPrimaryHoverBase,
+                              0 0 0.5px 1.3px rgba($cGreenDark2, 0.7);
+$boxShadowButtonGreenSecondary: $boxShadowButtonSecondaryBase,
+                              0 0 0.5px 1.3px rgba($cGreenDark1, 0.5);
+$boxShadowButtonGreenSecondaryHover: $boxShadowLift1,
+                              0 0 0.5px 1.3px rgba($cGreenDark1, 0.6);
+
+$boxShadowButtonOrangePrimary: $boxShadowEmptyOutsetX2,
+                              0 0 0.5px 1.3px rgba($cOrangeDark3, 0.9);
+$boxShadowButtonOrangePrimaryHover: $boxShadowButtonPrimaryHoverLight,
+                              0 0 0.5px 1.3px rgba($cOrangeDark1, 0.7);
+$boxShadowButtonOrangeSecondary: $boxShadowButtonSecondaryBase,
+                              0 0 0.5px 1.3px rgba($cOrangeDark1, 0.5);
+$boxShadowButtonOrangeSecondaryHover: $boxShadowLift1,
+                              0 0 0.5px 1.3px rgba($cOrangeDark1, 0.6);
+
+$boxShadowButtonRedPrimary:   $boxShadowEmptyOutsetX2,
+                              0 0 0.5px 1.3px rgba($cRedDark3, 0.9);
+$boxShadowButtonRedPrimaryHover: $boxShadowButtonPrimaryHoverLight,
+                              0 0 0.5px 1.3px rgba($cRedDark2, 0.7);
+$boxShadowButtonRedSecondary: $boxShadowButtonSecondaryBase,
+                              0 0 0.5px 1.3px rgba($cRedDark1, 0.5);
+$boxShadowButtonRedSecondaryHover: 0.5px 3px 2px -2.5px rgba($cRedDark2, 0.5),
+                              0 0 0.5px 1.3px rgba($cRedDark2, 0.6);
+                              // 0.5px 3px 2px -2.5px rgba($cRedDark2, 0.7),
+
+$boxShadowCardBorder: inset $boxShadow1px rgba($cBlueDark3, 0.1);
+$boxShadowCardBorder2: inset 0 0 0px 1px rgba($cBlueDark3, 0.12);
+                      // inset $boxShadow1px rgba($cBlueDark3, 0.18),
+                      // inset 0 -2px 0 -1px rgba(0, 40, 70, 0.15);
+$boxShadowCardShadow: 0px 6px 6px -9px rgba($cBlueDark3, 0.8);
+$boxShadowCardStackShadow: 3px 6px 6px -9px rgba($cBlueDark3, 0.8);
+$boxShadowCardStackHoverTopShadow: -7px 6px 6px -9px rgba($cBlueDark3, 0.8);
+$boxShadowCard: $boxShadowCardBorder, $boxShadowCardShadow;
+// $boxShadowCard2: $boxShadowCardShadow;
+$boxShadowCardStack: $boxShadowCardBorder, $boxShadowCardStackShadow;
+
+$boxShadowDropdown: $boxShadowCardShadow,
+                    0 0 0 1px rgba($cBlack, 0.3);// $boxShadowCard;
+
+                // 0px 6px 6px -9px rgba($cBlueDark3, 0.8); // shadow
+
+$boxShadowCardStacked: $boxShadowInset1px rgba($cBlueDark3, 0.08);
+// bottom-even-darker // primary border
+$boxShadowCardHoverBorder: $boxShadowInset1px rgba($cBlack, 0.12);
+// TODO: remove below?
+$boxShadowCardHoverBorder2: inset 0 -0.5px 0.5px 0.5px rgba($cBlueDark3, 0); //0.12);
+$boxShadowCardHover: $boxShadowCard, $boxShadowCardHoverBorder, $boxShadowLift2;
+$boxShadowCardSidebarBase: 1px 0px 1px -1px rgba($cBlack, 0.3),
+                       3px 1px 20px -8px rgba($cBlueDark2, 0.35),
+                       0.1px 0.3px 0 0.4px rgba($cBlueDark2, 0.2);
+$boxShadowCardSidebar: $boxShadowCardShadow,
+                       $boxShadowCardSidebarBase;
+$boxShadowCardStackSidebarHoverTop: $boxShadowCardStackHoverTopShadow,
+                       $boxShadowCardSidebarBase,
+                       -10px 15px 30px -20px rgba($cBlueDark2, 0.25),
+                       -0.5px 1px 4px -1px rgba($cBlueDark3, 0.20); // 3px 1px 10px -3px rgba($cBlueDark2, 0.35); // 4px 4px 8px -5px rgba($cBlueDark2, 0.35); // 5px 2px 15px -8px rgba($cBlack, 0.40); // 10px 8px 17px -10px rgba($cBlack, 0.15);
+$boxShadowCardHover2: $boxShadowCardSidebar,
+                      10px 8px 17px -10px rgba($cBlack, 0.15); // 15px 5px 20px -5px rgba($cBlueDark1, 0.25);
+$boxShadowCardHover3: $boxShadowCardSidebar,
+                      -10px 15px 30px -20px rgba($cBlueDark2, 0.25); // 15px 5px 20px -5px rgba($cBlueDark1, 0.25);
+$boxShadowCardStackLift: 5px 4px 4px -6px rgba($cBlueDark2, 0.4);
+$boxShadowCardStackHover: $boxShadowCardStack, $boxShadowCardHoverBorder, $boxShadowCardStackLift;
+
+$boxShadowCheckboxHover: 0 0 2px 0 rgba($cBlueDark1, 0.5);
+
+$boxShadowControlButtonDefault: $boxShadowInset1px rgba($cBlueDark1, 0.25);
+$boxShadowControlButtonActive: $boxShadowInset1pxBold rgba($cBlueBase, 0.5),;
+$boxShadowControlButtonPrimary: $boxShadowInset1pxBold rgba($cBlueBase, 0.7);
+$boxShadowControlButtonDefaultHover: $boxShadowControlButtonDefault,
+                                     $boxShadowLiftInset1;// $boxShadowLift1;
+$boxShadowControlButtonActiveHover: $boxShadowControlButtonActive,
+                                    $boxShadowLiftActive;
+$boxShadowControlButtonPrimaryHover: $boxShadowControlButtonPrimary,
+                                     $boxShadowLiftActive;
+
+$boxShadowMapControlDefault: 0 2px 2.5px 0 rgba($cBlueDark2, 0.3),
+                             -5px 0 10px 8px rgba($cBlueDark2, 0.05),
+                             5px 0 10px 8px rgba($cBlueDark2, 0.05);
+$boxShadowMapControlHover: $boxShadowMapControlDefault,
+                           0 0 0 3px $cBlueLight1;
+
+$boxShadowMain: 0 5px 6px -3px rgba($cBlack, 0.5),
+                0 50px 300px 0 rgba($cBlack, 0.35);
+$boxShadowModalAboveBackDefault: 1px 5px 20px 0px $cBlack;
+$boxShadowModalAboveBackHover: $boxShadowModalAboveBackDefault,
+                               1px 10px 6px -10px $cBlack;
+
+
+$boxShadowPillBorder: 0 0.2px 0.09px 1.5px;
+$boxShadowPillTransparent: 0 0.2px 0.9px 1.5px rgba($cBlack, 0.01); // , $boxShadowEmptyOutset; // $boxShadowPillBorder rgba($cWhite, 0.01);
+$boxShadowPillDefault: $boxShadowPillBorder $cPillDefaultBorder;
+// $boxShadowPillDefaultHover: $boxShadowPillDefault,
+//                             $boxShadowLift1;
+// $boxShadowPillDefaultFocus: $boxShadowPillFocus;
+$boxShadowPillBlue: $boxShadowPillBorder $cPillBlueBorder;
+$boxShadowPillBlue2: $boxShadowPillBorder $cPillBlue2Border;
+// $boxShadowPillDefaultHover: $boxShadowPillDefault, $boxShadowLift1;
+$boxShadowPillDefaultHover: $boxShadowPillFocus, $boxShadowLift1;
+$boxShadowPillDefaultFocus: $boxShadowPillFocus;
+// $boxShadowPillBlueHover: $boxShadowPillBlue, $boxShadowLift1;
+$boxShadowPillBlueHover:  $boxShadowPillFocus, $boxShadowLift1;
+$boxShadowPillBlueFocus:  $boxShadowPillFocus;
+$boxShadowPillBlue2Hover: $boxShadowPillFocus, $boxShadowLift1;
+$boxShadowPillBlue2Focus:  $boxShadowPillFocus;
+
+
+$boxShadowPezBorder: 0 0.2px 0px 1.8px;
+$boxShadowPezDefault: $boxShadowPezBorder $cPezDefaultBorder;
+$boxShadowPezDefaultHover: $boxShadowPezDefault,
+                            $boxShadowLift1;
+// $boxShadowPezDefaultFocus: $boxShadowPezFocus;
+$boxShadowPezBlue: $boxShadowPezBorder $cPezBlueBorder;
+$boxShadowPezBlue2: $boxShadowPezBorder $cPezBlue2Border;
+$boxShadowPezDefaultHover: $boxShadowPezDefault,
+                            $boxShadowLift1;
+$boxShadowPezDefaultFocus: $boxShadowPezFocus;
+$boxShadowPezBlueHover: $boxShadowPezBlue,
+                         $boxShadowLift1;
+$boxShadowPezBlueFocus:  $boxShadowPezFocus;
+$boxShadowPezBlue2Hover: $boxShadowPezBlue2,
+                         $boxShadowLift1;
+$boxShadowPezBlue2Focus:  $boxShadowPezFocus;
+
+
+$boxShadowPopup: 0 10px 20px $cBlack7;
+$boxShadowPaper: 0 8px 10px -8px $cBlack4;
+$boxShadowToast: 0 -5px 4px -3px inset rgba(0, 0, 0, 0.3),
+                 0 4px 2px -3px rgba(0, 0, 0, 0.6),
+                 0 4px 4px 0px inset $cWhite9;
+$boxShadowToastWarning: 0 5px 4px -3px rgba(0, 0, 0, 0.75),
+                        0 4px 4px 0px inset $cWhite9;

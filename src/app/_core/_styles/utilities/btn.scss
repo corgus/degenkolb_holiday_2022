@@ -1,0 +1,157 @@
+@import '../resources';
+
+
+.btn-default {
+  @extend %button;
+}
+
+.btn-sm {
+  @extend %btn-sm;
+}
+.btn-sm-default {
+  @extend %btn-sm-default;
+}
+
+.btn-primary {
+  @extend %btn-primary-full;
+}
+
+.btn-primary--over-map {
+  @extend %btn-primary--over-map;
+}
+
+.btn-secondary {
+  @extend %btn-secondary-full;
+}
+
+.btn-secondary-dark {
+  @extend %btn-secondary-dark;
+}
+
+.btn-secondary-white {
+  @extend %btn-secondary-white;
+}
+
+.btn-secondary--over-map {
+  @extend %btn-secondary--over-map;
+}
+
+// .btn-secondary-green {
+//   @extend %btn-secondary-green;
+// }
+
+// OTHER COLORS
+
+button.btn-green {
+  @extend %button;
+  @extend %btn-primary-base;
+  color: $cWhite;
+  background-color: $cGreenDark1;
+  box-shadow: $boxShadowButtonGreenPrimary;
+
+  &:hover {
+    background-color: $cGreenBase;
+    box-shadow: $boxShadowButtonGreenPrimaryHover;
+  }
+}
+
+button.btn-green-secondary {
+  @extend %button;
+  @extend %btn-secondary-base;
+  // background-color: $cWhite;
+  box-shadow: $boxShadowButtonGreenSecondary;
+  color: $cGreenBase;
+
+  &:hover {
+    background-color: rgba($cGreenBase, 0.1);
+    box-shadow: $boxShadowButtonGreenSecondaryHover;
+  }
+}
+
+button.btn-orange {
+  @extend %button;
+  @extend %btn-primary-base;
+  color: $cWhite;
+  background-color: $cOrangeDark2;
+  box-shadow: $boxShadowButtonOrangePrimary;
+
+  &:hover {
+    background-color: $cOrangeDark1;
+    box-shadow: $boxShadowButtonOrangePrimaryHover;
+  }
+}
+
+button.btn-orange-secondary {
+  @extend %button;
+  @extend %btn-secondary-base;
+  box-shadow: $boxShadowButtonOrangeSecondary;
+  color: $cOrangeDark1;
+
+  &:hover {
+    color: $cOrangeDark2;
+    background-color: rgba($cOrangeDark1, 0.1);
+    box-shadow: $boxShadowButtonOrangeSecondaryHover;
+  }
+}
+
+button.btn-red {
+  @extend %button;
+  @extend %btn-primary-base;
+  color: $cWhite;
+  background-color: $cRedDark2;
+  box-shadow: $boxShadowButtonRedPrimary;
+
+  &:hover {
+    background-color: $cRedDark1;
+    box-shadow: $boxShadowButtonRedPrimaryHover;
+  }
+}
+
+button.btn-red-secondary {
+  @extend %button;
+  @extend %btn-secondary-base;
+  color: $cRedDark1;
+  box-shadow: $boxShadowButtonRedSecondary;
+
+  &:hover {
+    background-color: rgba($cRedBase, 0.15);
+    box-shadow: $boxShadowButtonRedSecondaryHover;
+  }
+}
+
+.btn-icon {
+  @extend %btn-icon;
+}
+
+.btn-icon-default {
+  @extend %btn-icon;
+  border: 1px solid rgba($cBlack, 0.15);
+  box-shadow: inset -1px -1px 3px 1px rgba(darken($cBgBase, 70%), 0.04);
+  background-color: $cBgBase;
+  color: $cBlack4;
+
+  &:not(.is-disabled):hover {
+    color: $cTextBase;
+  }
+}
+
+.sequence-section-icon-default {
+  @extend %btn-icon;
+  background-color: #a0b1bc; // $cTextLight1;
+  box-shadow: 0 0 0 4px $cBgBase;
+  color: $cWhite;
+}
+
+.btn-icon-light-gray {
+  @extend %btn-icon;
+  background-color: $cBlack6Opaque;
+  color: $cWhite;
+}
+
+.sequence-section-icon-active {
+  @extend %btn-icon;
+  background-color: $cBlack4Opaque;
+  box-shadow: 0 0 0 4px $cBgBase;
+  color: $cWhite;
+}
+

@@ -1,0 +1,182 @@
+@import '../variables/index';
+
+
+%pill {
+  @include font(sans-serif);
+  display: inline-block;
+  position: relative; // for optional loading animation positioning
+  padding: $paddingBtnSm;
+  border: none;
+  border-radius: 100px; // 20px; // 22px/20px; <= fix sub-px artifacts
+  font-size: $fontSizeBase;
+  line-height: $lineHeightBase180;
+  cursor: pointer;
+  transition: $btnTransitionDefault;
+  bottom: 0;
+  box-shadow: $boxShadowPillDefault;
+  background: white; //transparent;
+  height: 30px;
+
+  &:focus:not(:active) {
+    outline: none;
+    box-shadow: $boxShadowPillFocus;
+  }
+
+  &.pill-sm {
+    height: 25px;
+    padding: $paddingBtnH25;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+
+    .pill-icon {
+      padding-right: 4px;
+    }
+  }
+
+  &.icon-only {
+    width: 30px;
+    padding: 0;
+    text-align: center;
+
+    &.pill-sm { width: 25px; }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &.is-hovering {
+    text-decoration: none;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 15px;
+  }
+
+  &.is-loading,
+  &.is-loading:disabled,
+  &.is-loading:disabled:hover {
+    cursor: wait;
+  }
+
+  &:not(.is-loading):disabled,
+  &:not(.is-loading):disabled:hover,
+  &:not(.is-loading).is-disabled,
+  &:not(.is-loading).is-disabled:hover {
+    cursor: not-allowed;
+  }
+}
+
+%pill-default {
+  @extend %pill;
+  color: $cPillDefaultText;
+  box-shadow: $boxShadowPillDefault;
+
+  &:focus { box-shadow: $boxShadowPillDefaultFocus; }
+  &:hover:not(.is-hovering-only),
+  &.is-hovering {
+    color: $cPillDefaultTextHover;
+    box-shadow: $boxShadowPillDefaultHover;
+  }
+}
+
+%pill-transparent {
+  @extend %pill;
+  color: $cPillDefaultText;
+  background: rgba($cWhite, 0.01);
+  box-shadow: $boxShadowPillTransparent;
+  // box-shadow: $boxShadowPillDefault;
+
+  &:focus { box-shadow: $boxShadowPillDefaultFocus; }
+  &:hover:not(.is-hovering-only),
+  &.is-hovering {
+    color: $cPillDefaultTextHover;
+    background: white;
+    box-shadow: $boxShadowPillDefaultHover;
+    // box-shadow: $boxShadowMapControlHover;
+    // box-shadow: $boxShadowControlButtonActiveHover;
+  }
+}
+
+%pill-white {
+  @extend %pill;
+  color: $cPillDefaultText;
+  box-shadow: none;
+  background: white;
+  // box-shadow: $boxShadowPillDefault;
+
+  &:focus { box-shadow: $boxShadowPillDefaultFocus; }
+  &:hover:not(.is-hovering-only),
+  &.is-hovering {
+    color: $cPillDefaultTextHover;
+    box-shadow: $boxShadowMapControlHover;
+    // box-shadow: $boxShadowControlButtonActiveHover;
+  }
+}
+
+%pill-blue {
+  @extend %pill;
+  color: $cPillBlueText;
+  box-shadow: $boxShadowPillBlue;
+
+  &:focus { box-shadow: $boxShadowPillBlueFocus; }
+  &:hover:not(.is-hovering-only),
+  &.is-hovering {
+    box-shadow: $boxShadowPillBlueHover;
+  }
+}
+
+%pill-blue-2 {
+  @extend %pill;
+  color: $cPillBlue2Text;
+  box-shadow: $boxShadowPillBlue2;
+  background: $cPillBlue2Background;
+
+  &:focus { box-shadow: $boxShadowPillBlue2Focus; }
+  &:hover:not(.is-hovering-only),
+  &.is-hovering {
+    box-shadow: $boxShadowPillBlue2Hover;
+  }
+}
+
+// pill-icon
+%pill-icon {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: $fontSizeSmall;
+  padding-right: 6px; // 3px;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  height: 20px;
+
+  &.icon-font-size-smaller {
+    font-size: $fontSizeSmaller;
+  }
+  &.icon-font-size-micro {
+    font-size: $fontSizeMicro;
+  }
+}
+
+%pill-icon-only {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: $fontSizeSmall;
+  width: auto; // 10px;
+  height: 20px;
+  text-align: center;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+
+  &.icon-font-size-smaller {
+    font-size: $fontSizeSmaller;
+    line-height: 22px;
+  }
+
+  &.icon-font-size-micro {
+    font-size: $fontSizeMicro;
+    line-height: 22px;
+  }
+}

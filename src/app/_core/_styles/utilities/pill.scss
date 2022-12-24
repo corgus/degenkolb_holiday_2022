@@ -1,0 +1,43 @@
+@import '../resources';
+
+
+.pill-default { @extend %pill-default; }
+.pill-transparent { @extend %pill-transparent; }
+.pill-white { @extend %pill-white; }
+.pill-blue { @extend %pill-blue; }
+.pill-blue-2 { @extend %pill-blue-2; }
+
+.pill-icon { @extend %pill-icon; }
+.pill-icon-only { @extend %pill-icon-only; }
+
+.pill-icon-default {
+  @extend %pill-icon;
+  border: 1px solid rgba($cBlack, 0.15);
+  box-shadow: inset -1px -1px 3px 1px rgba(darken($cBgBase, 70%), 0.04);
+  background-color: $cBgBase;
+  color: $cBlack4;
+
+  &:not(.is-disabled):hover {
+    color: $cTextBase;
+  }
+}
+
+.pill-icon-text-lighter {
+  @extend %pill-icon;
+  // background-color: $cBlack6Opaque;
+  background-color: $cTextLight1;
+  color: $cWhite;
+}
+
+.pill-icon-light-gray {
+  @extend %pill-icon;
+  background-color: $cBlack6Opaque;
+  color: $cWhite;
+}
+
+.pill-icon-dark-gray {
+  @extend %pill-icon;
+  background-color: $cBlack4Opaque;
+  color: $cWhite;
+}
+

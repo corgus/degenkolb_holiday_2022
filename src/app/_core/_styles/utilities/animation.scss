@@ -1,0 +1,155 @@
+@import '../resources';
+
+// @keyframes LoadingBackground {
+//   0%    { background-position: 0% 50%; }
+//   50%   { background-position: 100% 50%; }
+//   100%  { background-position: 0% 50%; }
+// }
+
+// .loading-background {
+//   background: linear-gradient(132deg, $cBlueDark1, $cBlueLight1);
+//   background-size: 400% 400%;
+//   animation: LoadingBackground 2s ease infinite;
+// }
+
+$loadingBackgroundHeight: 300px;
+// $loadingBackgroundWidth: 28px;
+$loadingBackgroundWidth: 300px;
+$loadingBackgroundColor1: $cBlueDark1;
+$loadingBackgroundColor2: $cBlueBase;
+
+@keyframes LoadingBackground {
+  0%    { background-position: 0 0; }
+  100%  { background-position: $loadingBackgroundWidth 0; }
+}
+
+.loading-background {
+  // height: $loadingBackgroundHeight;
+  // border: 1px solid #2980b9;
+  // border-radius: 3px;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      $loadingBackgroundColor1,
+      $loadingBackgroundColor1 $loadingBackgroundHeight/2 + 1,
+      $loadingBackgroundColor2 $loadingBackgroundHeight/2,
+      $loadingBackgroundColor2 $loadingBackgroundHeight /* determines size */
+    );
+  background-size: $loadingBackgroundWidth $loadingBackgroundWidth;
+  animation: LoadingBackground 1s linear infinite;
+}
+
+//
+
+$loadingBarHeight: 4px;
+$loadingBarColor1: #2980b9;
+$loadingBarColor2: #ddd;
+
+@keyframes LoadingBarBox1 {
+  0% {
+    left:-35%;
+    right:100%;
+  }
+  60%, 100% {
+    left:100%;
+    right:-90%;
+  }
+}
+@keyframes LoadingBarBox2 {
+  0% {
+    left:-200%;
+    right:100%;
+  }
+  60%, 100% {
+    left:107%;
+    right:-8%;
+  }
+}
+
+.loading-bar {
+  height: $loadingBarHeight;
+  position: relative;
+  overflow: hidden;
+  background-color: $loadingBarColor2;
+}
+.loading-bar div:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  background: $loadingBarColor1;
+  animation: LoadingBarBox1 2.1s cubic-bezier(0.65,0.81,0.73,0.4) infinite;
+}
+.loading-bar div:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  background: $loadingBarColor1;
+  animation: LoadingBarBox2 2.1s cubic-bezier(0.16,0.84,0.44,1) infinite;
+  animation-delay: 1150ms;
+}
+
+
+//
+
+$barberBarHeight: 20px;
+$barberBarWidth: 28px;
+$barberBarColor1: #2980b9;
+$barberBarColor2: #EEE;
+
+@keyframes LoadingBarberBar {
+  0%    { background-position: 0 0; }
+  100%  { background-position: $barberBarWidth 0; }
+}
+
+.loading-barber-bar {
+  height: $barberBarHeight;
+  border: 1px solid #2980b9;
+  border-radius: 3px;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      $barberBarColor1,
+      $barberBarColor1 $barberBarHeight/2 + 1,
+      $barberBarColor2 $barberBarHeight/2,
+      $barberBarColor2 $barberBarHeight /* determines size */
+    );
+  background-size: $barberBarWidth $barberBarWidth;
+  animation: LoadingBarberBar .5s linear infinite;
+}
+
+//
+
+@keyframes LoadingBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+  }
+}
+
+.loading-bounce {
+  width: 70px;
+  text-align: center;
+}
+
+.loading-bounce > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  animation: LoadingSpinnerBounce 1.4s infinite ease-in-out both;
+}
+
+.loading-bounce .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.loading-bounce .bounce2 {
+  animation-delay: -0.16s;
+}
