@@ -127,7 +127,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   queryParam$: any
   totalWords: number
-
+  isCopied: boolean
           // <!-- <ss-video
           //   [ngClass]="{'is-animated': animateIndex[3] }"
           //   [ssSrc]="images[3]">
@@ -198,14 +198,14 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   initFormGroup() {
     this.form = this.fb.group({
-      'w_1': ['', [Validators.required]],
-      'w_2': ['', [Validators.required]],
-      'w_3': ['', [Validators.required]],
-      'w_4': ['', [Validators.required]],
-      'w_5': ['', [Validators.required]],
-      'w_6': ['', [Validators.required]],
-      'w_7': ['', [Validators.required]],
-      'w_8': ['', [Validators.required]]
+      'w1': ['', [Validators.required]],
+      'w2': ['', [Validators.required]],
+      'w3': ['', [Validators.required]],
+      'w4': ['', [Validators.required]],
+      'w5': ['', [Validators.required]],
+      'w6': ['', [Validators.required]],
+      'w7': ['', [Validators.required]],
+      'w8': ['', [Validators.required]]
     })
 
     this.totalWords = Object.keys(this.form.controls).length
@@ -268,13 +268,19 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
 
   updateAnimateIndex(index?) {
-    if (typeof index !== 'undefined') this.animateIndex[index] = true
+    if (typeof index === 'undefined') {
+      this.resetAnimateIndex()
+    } else {
+      this.animateIndex[index] = true
+    }
+
     this.detectChanges()
     // console.log('UAI-1', index, Object.assign([], this.animateIndex))
-    window.setTimeout(this.resetAnimateIndexExcept.bind(this, index), this.bookTransitionDuration * 0.5)
+    window.setTimeout(this.resetAnimateIndex.bind(this, { except: index }), this.bookTransitionDuration * 0.5)
   }
 
-  resetAnimateIndexExcept(index?) {
+  resetAnimateIndex(params?) {
+    let index = params ? params['except'] : null
     for (let [i, entry] of this.animateIndex.entries()) {
       if ((typeof index !== 'undefined') && index === i) continue
       this.animateIndex[i] = false
@@ -289,7 +295,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   controlNameFromIndex(index: number) {
-    return "w_" + (index + 1)
+    return "w" + (index + 1)
   }
 
   word(count: number) {
@@ -352,7 +358,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   handleValid() {
     this.isInvalid = false
-    this.updateQueryParamsFromWords()
+    // this.updateQueryParamsFromWords()
   }
 
 
@@ -381,6 +387,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.updateFormValid()
     if (!this.form.valid) return this.handleInvalid()
 
+    this.updateQueryParamsFromWords()
     this.flip(1)
     this.detectChanges()
   }
@@ -413,27 +420,39 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     console.log('TODO: handleReplayCredits')
     evt.stopPropagation()
     this.isResettingCredits = true
+
     this.updateAnimateIndex(null)
     this.detectChanges()
-    window.setTimeout(this.resetCreditReset.bind(this), 1000)
+    window.setTimeout(this.resetCreditReset.bind(this), 100)
   }
 
   resetCreditReset() {
     this.isResettingCredits = false;
+    this.updateAnimateIndex(4)
     this.detectChanges()
     // console.log('reset-reset')
   }
 
   handleShareLinkSelect(evt: any) {
     evt.stopPropagation()
-    console.log('TODO: copy to clipboard, toast', this.shareLink)
+    // console.log('TODO: copy to clipboard, toast', this.shareLink)
 
     // var text = "Example text to appear on clipboard";
     navigator.clipboard.writeText(this.shareLink).then(() => {
       console.log('Async: Copying to clipboard was successful!');
+      this.showCopied()
     }, function(err) {
       console.error('ERROR: Could not copy text: ', err);
     });
+  }
+
+  showCopied() {
+    if (this.isCopied) return
+    this.isCopied = true
+    window.setTimeout(() => {
+      this.isCopied = false;
+      this.detectChanges()
+    }, 3000)
   }
 
   updateQueryParams(qp = {}): Promise<boolean> {
