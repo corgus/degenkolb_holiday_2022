@@ -3,6 +3,7 @@
 
 import { ChangeDetectorRef,
          Component,
+         ElementRef,
          EventEmitter,
          HostBinding,
          Input,
@@ -14,6 +15,7 @@ import { ChangeDetectorRef,
          OnDestroy,
          QueryList,
          ContentChildren,
+         ViewChild,
          ViewChildren } from '@angular/core'
 
 import { trigger,
@@ -55,6 +57,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   @Input('ssResetPages') resetPages: boolean
   @ContentChildren(BookPageContentComponent) pages !: QueryList<BookPageContentComponent>
+  @ViewChild('shareInput') shareInput: ElementRef
   @ViewChildren(BookPageComponent) bookPages !: QueryList<BookPageComponent>
 
   page: number
@@ -127,7 +130,11 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   queryParam$: any
   totalWords: number
-  isCopied: boolean
+  isCopying: boolean
+  isCopyingShareLink: boolean
+
+  // copyControlTextDefault = "Copy Link"
+  copyControlText: string = "Copy Link"
           // <!-- <ss-video
           //   [ngClass]="{'is-animated': animateIndex[3] }"
           //   [ssSrc]="images[3]">
@@ -169,8 +176,22 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     // this.pages$ = this.pagesStream()
   }
 
+  ngOnChanges(changes: any) {
+    // console.log('changes', changes)
+    this.update()
+  }
+
+  ngOnDestroy() {
+    if (this.pages$) this.pages$.unsubscribe()
+  }
+
   ngAfterDestroy() {
     if (this.queryParam$) this.queryParam$.unsubscribe()
+  }
+
+
+  get words() {
+    return this.form.controls["w"] as FormArray;
   }
 
   queryParamStream() {
@@ -185,6 +206,17 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
       // this.update()
     })
   }
+
+  update() {
+    this.resetShouldFloatInputLabel()
+    this.detectChanges()
+    // this.updateCopyControlText()
+  }
+
+  // updateCopyControlText() {
+  //   this.copyControlText = this.isCopyingShareLink ? "Copied" : "Copy Text"
+  // }
+
 
   updateFormFromQueryParams(qp: any) {
     console.log('todo: ufqp', qp, this.form)
@@ -211,18 +243,6 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.totalWords = Object.keys(this.form.controls).length
   }
 
-  get words() {
-    return this.form.controls["w"] as FormArray;
-  }
-
-  ngOnChanges(changes: any) {
-    // console.log('changes', changes)
-    this.update()
-  }
-
-  ngOnDestroy() {
-    if (this.pages$) this.pages$.unsubscribe()
-  }
 
   public flip(dir?: number) {
     const bookPageFiltered = this.bookPages.filter((element, index) => index === (this.currentIndex / 2));
@@ -233,10 +253,6 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     bookPage.flipPage()
   }
 
-  update() {
-    this.resetShouldFloatInputLabel()
-    this.detectChanges()
-  }
 
   resetShouldFloatInputLabel() {
     this.shouldFloatInputLabel = Array(this.madlibPrompts.length)
@@ -269,7 +285,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   updateAnimateIndex(index?) {
     if (typeof index === 'undefined') {
-      this.resetAnimateIndex()
+      return this.resetAnimateIndex()
     } else {
       this.animateIndex[index] = true
     }
@@ -324,12 +340,27 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     // console.log('updated', index, word, this.words)
   }
 
-  handleSelectRandom() {
+  handleSelectFormRandom() {
     this.shouldFloatInputLabel = new Array()
     this.shouldFloatInputLabel = Array.from(Array(this.madlibPrompts.length), x => 1)
     this.detectChanges()
 
     window.setTimeout(this.updateWithRandomWordsNow.bind(this), 500)
+  }
+
+  handleSelectFormReset() {
+    // this.shouldFloatInputLabel = new Array()
+    // this.shouldFloatInputLabel = Array.from(Array(this.madlibPrompts.length), x => 1)
+    // for (const [index, set] of this.randomOptions.entries()) {
+
+    for(var i = 0; i < this.totalWords; i++){
+      this.form.controls[this.controlNameFromIndex(i)].setValue(null)
+    }
+
+    this.detectChanges()
+
+    this.updateQueryParamsFromWords()
+    // window.setTimeout(this.updateWithRandomWordsNow.bind(this), 500)
   }
 
   updateWithRandomWordsNow() {
@@ -379,7 +410,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.detectChanges()
   }
 
-  handleSubmit() {
+  handleSubmitForm() {
     // console.log('submit!', this.form, this.form.valid)
 
     this.isInvalid = false
@@ -393,14 +424,14 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   markAllInputsAsTouched() {
-    this.form.controls['word_1'].markAsTouched()
-    this.form.controls['word_2'].markAsTouched()
-    this.form.controls['word_3'].markAsTouched()
-    this.form.controls['word_4'].markAsTouched()
-    this.form.controls['word_5'].markAsTouched()
-    this.form.controls['word_6'].markAsTouched()
-    this.form.controls['word_7'].markAsTouched()
-    this.form.controls['word_8'].markAsTouched()
+    this.form.controls['w1'].markAsTouched()
+    this.form.controls['w2'].markAsTouched()
+    this.form.controls['w3'].markAsTouched()
+    this.form.controls['w4'].markAsTouched()
+    this.form.controls['w5'].markAsTouched()
+    this.form.controls['w6'].markAsTouched()
+    this.form.controls['w7'].markAsTouched()
+    this.form.controls['w8'].markAsTouched()
     this.detectChanges()
   }
 
@@ -421,9 +452,9 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     evt.stopPropagation()
     this.isResettingCredits = true
 
-    this.updateAnimateIndex(null)
+    // this.updateAnimateIndex(null)
     this.detectChanges()
-    window.setTimeout(this.resetCreditReset.bind(this), 100)
+    window.setTimeout(this.resetCreditReset.bind(this), 10)
   }
 
   resetCreditReset() {
@@ -433,27 +464,49 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     // console.log('reset-reset')
   }
 
-  handleShareLinkSelect(evt: any) {
+  handleSelectShareLink(evt: any) {
     evt.stopPropagation()
     // console.log('TODO: copy to clipboard, toast', this.shareLink)
+
+    // this.toggleShareLinkCopied(true)
+    // console.log('SHARE', this.shareInput)
+    if (this.shareInput) {
+      let el = this.shareInput.nativeElement
+      // let val = el.value
+      el.focus()
+      el.setSelectionRange(0, el.value.length)
+    }
 
     // var text = "Example text to appear on clipboard";
     navigator.clipboard.writeText(this.shareLink).then(() => {
       console.log('Async: Copying to clipboard was successful!');
-      this.showCopied()
+      this.toggleShareLinkCopied()
     }, function(err) {
       console.error('ERROR: Could not copy text: ', err);
     });
   }
 
-  showCopied() {
-    if (this.isCopied) return
-    this.isCopied = true
-    window.setTimeout(() => {
-      this.isCopied = false;
-      this.detectChanges()
-    }, 3000)
+  toggleShareLinkCopied(toggle=true) {
+    if (toggle && this.isCopyingShareLink) return
+    this.isCopyingShareLink = toggle
+
+    // this.copyControlText = toggle ?
+    // this.updateCopyControlText()
+    this.detectChanges()
+    if (!toggle) return
+    // if (typeof toggle === 'undefined') toggle = true
+    // this.shareLinkCopied = toggle
+    window.setTimeout(this.toggleShareLinkCopied.bind(this, false), 3000)
   }
+
+  // showCopied() {
+  //   if (this.isCopied) return
+  //   this.isCopied = true
+  //   window.setTimeout(() => {
+  //     this.isCopied = false;
+  //     this.detectChanges()
+  //   }, 3000)
+  // }
 
   updateQueryParams(qp = {}): Promise<boolean> {
     // navigate = true, force = false
