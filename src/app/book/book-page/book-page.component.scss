@@ -120,6 +120,9 @@ Copy to Clipboard
     // background:rgba(white, 1);
     background-size: contain;
     background-repeat: no-repeat;
+    // backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
+
     position: absolute;
     top: 0;
     bottom: 0;
@@ -224,6 +227,7 @@ Copy to Clipboard
   /* for firefox 31 */
   transform: rotateY(0deg);
   background-size: contain;
+  // backface-visibility: hidden;
 
   &.is-first {
     box-shadow: none;
@@ -236,6 +240,7 @@ Copy to Clipboard
   transform: rotate3D(0, 1, 0, 180deg);
   transform-origin: center;
   background-size: contain;
+  // backface-visibility: hidden;
 
   &.is-last {
     box-shadow: none;

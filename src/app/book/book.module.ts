@@ -25,6 +25,7 @@ import { BookPageContentComponent } from './book-page-content/book-page-content.
 
 import { BookDegComponent } from './book-deg/book-deg.component'
 
+import { AudioModule } from '../audio/audio.module'
 import { VideoModule } from '../video/video.module'
 
 
@@ -34,6 +35,7 @@ import { VideoModule } from '../video/video.module'
     FormsModule,
     ReactiveFormsModule,
     // SharedMaterialModule,
+    AudioModule,
     VideoModule,
     // RouterModule,
     SharedModule,

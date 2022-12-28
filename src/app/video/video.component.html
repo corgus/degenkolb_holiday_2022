@@ -1,4 +1,29 @@
+<video
+  #videoPlayer
+  width="404"
+  (click)="handleClickVideo($event)">
 
+  <source *ngIf="srcWEBM"
+    [src]="srcWEBM"
+    type="video/webm">
+
+  <source *ngIf="srcMP4"
+    [src]="srcMP4"
+    type="video/mp4">
+    <!-- <source src="/media/cc0-videos/flower.webm"
+            type="video/webm">
+
+    <source src="/media/cc0-videos/flower.mp4"
+            type="video/mp4"> -->
+
+   <!--  Download the
+    <a href="/media/cc0-videos/flower.webm">WEBM</a>
+    or
+    <a href="/media/cc0-videos/flower.mp4">MP4</a>
+    video. -->
+</video>
+
+<!--
 <video
   id="my_video_1"
   class="video-js vjs-default-skin"
@@ -13,10 +38,12 @@
   <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
 
   <button (click)="playPause()">Play/Pause</button>
+</video> -->
+
+
   <!-- <button (click)="makeBig()">Big</button>
   <button (click)="makeSmall()">Small</button>
   <button (click)="makeNormal()">Normal</button>
   <button (click)="restart();">Restart</button>
   <button (click)="skip(-10)">Rewind</button>
   <button (click)="skip(10)">Fastforward</button> -->
-</video>

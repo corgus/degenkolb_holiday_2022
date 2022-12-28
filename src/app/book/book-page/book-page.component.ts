@@ -171,7 +171,7 @@ export class BookPageComponent implements OnInit, OnChanges, OnDestroy {
   updateCoverShown() {
     // this.coverOpacityFront = this.isFlipped ? this.zIndex - 1 : this.zIndex - 2
     this.coverOpacityBack = this.isFlipped ? 1 : 0
-    this.coverOpacityFront = this.isFlipped  ? 1 : 0
+    this.coverOpacityFront = this.isFlipped ? 0 : 1
     // console.log('OCS', this.coverOpacityBack)
     // console.log('zinds f b', this.coverZindexFront, this.coverZindexBack)
     this.detectChanges()
@@ -205,7 +205,7 @@ export class BookPageComponent implements OnInit, OnChanges, OnDestroy {
 
       window.setTimeout(() => {
         this.updateCover()
-      }, this.book_transition_duration * 0.2)
+      }, this.book_transition_duration * 0.4)
 
     } else {
       // this.zIndex = 999 - this.index
@@ -225,7 +225,7 @@ export class BookPageComponent implements OnInit, OnChanges, OnDestroy {
 
       window.setTimeout(() => {
         this.updateCover()
-      }, this.book_transition_duration * 0.2)
+      }, this.book_transition_duration * 0.4)
 
       // this.detectChanges()
     }

@@ -21,9 +21,94 @@ $deg_share_control_icon_width: 14px;
 $deg_share_control_text_width: 55px;
 $deg_share_blue: #0078FA; // rgb(0 120 250);
 
+
+@font-face {
+  font-family: 'Rabiohead';
+  src: url("/assets/fonts/Rabiohead/rabiohead.eot?#iefix") format('embedded-opentype'),
+       url("/assets/fonts/Rabiohead/rabiohead.ttf") format('truetype')
+}
+
+.font-default {
+  // font-family: 'EB_Garamond', serif !important;
+}
+
+:host {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  min-width: 933px;
+  flex-direction: column;
+
+  font-family: serif; // 'EB_Garamond', serif;
+}
+
+p {
+  font-family: serif; // 'EB_Garamond', serif;
+  font-size: 14px;
+}
+
+.deg-header {
+  height: 60px;
+  display: flex;
+  flex: none;
+  justify-content: space-between;
+  align-items: center;
+  // max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px 30px;
+}
+
+.deg-header-left {
+  a {
+    cursor: pointer;
+  }
+
+  img {
+    height: 40px;
+  }
+}
+
+.deg-header-right {
+  // padding: 30px 0;
+  // flex-grow: 1;
+  // position: relative;
+  // text-align: right;
+
+  position: fixed;
+  right: 25px;
+  top: 20px;
+
+  audio {
+    right: 0;
+    width: 100px;
+    background: transparent;
+
+  }
+}
+
+.deg-book-container {
+  width: 933px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+// .deg-book-container-inner {
+//   width: 933px;
+//   flex: 1;
+// }
+
+
+
 .hidden {
   opacity: 0;
 }
+
+.padding-top-70 { padding-top: 70px !important; }
+.padding-top-100 { padding-top: 100px !important; }
+.padding-top-175 { padding-top: 175px !important; }
 
 .book-carousel {
   box-sizing: border-box;
@@ -31,6 +116,8 @@ $deg_share_blue: #0078FA; // rgb(0 120 250);
   height: $book_height;
   transition: all ease $book_transition_duration;
   width: 2 * ($book_width + $book_cover_margin_side);
+
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 
   &.is-front {
     margin-left: -25%;
@@ -77,7 +164,7 @@ $deg_share_blue: #0078FA; // rgb(0 120 250);
 }
 
 .deg-note-container {
-  padding: 70px;
+  padding: 100px 70px;
 }
 
 .deg-note {
@@ -165,7 +252,7 @@ $deg_share_blue: #0078FA; // rgb(0 120 250);
 
 .deg-page-text-container {
   width: 100%;
-  padding: 60px 30px 50px 50px;
+  padding: 50px 30px 50px 50px;
   // width-100pct padding-v-50 padding-left-50
 }
 

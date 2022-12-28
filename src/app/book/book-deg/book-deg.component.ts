@@ -16,7 +16,8 @@ import { ChangeDetectorRef,
          QueryList,
          ContentChildren,
          ViewChild,
-         ViewChildren } from '@angular/core'
+         ViewChildren,
+         ViewContainerRef } from '@angular/core'
 
 import { trigger,
          state,
@@ -36,6 +37,10 @@ import { BookPageComponent } from '../book-page/book-page.component'
 import { BookPageContentComponent } from '../book-page-content/book-page-content.component'
 
 import { BookDegHelper } from './book-deg-helper'
+
+
+import { VideoComponent } from '../../video/video.component'
+import { AudioComponent } from '../../audio/audio.component'
 
 @Component({
   moduleId: module.id,
@@ -59,6 +64,8 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   @ContentChildren(BookPageContentComponent) pages !: QueryList<BookPageContentComponent>
   @ViewChild('shareInput') shareInput: ElementRef
   @ViewChildren(BookPageComponent) bookPages !: QueryList<BookPageComponent>
+  @ViewChildren(VideoComponent) videoComponents !: QueryList<VideoComponent>
+// , { read: ViewContainerRef }
 
   page: number
   indexViewed = 0
@@ -135,6 +142,20 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   // copyControlTextDefault = "Copy Link"
   copyControlText: string = "Copy Link"
+
+  videoSrc: any[] = [
+    { mp4: '/assets/mov/scene 1.mp4' },
+    { mp4: '/assets/mov/scene 2.mp4' },
+    { mp4: '/assets/mov/scene 3.mp4' },
+    { mp4: '/assets/mov/scene 4.mp4' },
+  ]
+
+  audioOptions = {
+    srcMP3: '/assets/audio/audio_loop.mp3',
+    srcWAV: '/assets/audio/audio_loop.wav'
+  }
+
+  logoSrc = '/assets/img/degenkolb-logo.png'
           // <!-- <ss-video
           //   [ngClass]="{'is-animated': animateIndex[3] }"
           //   [ssSrc]="images[3]">
@@ -288,11 +309,20 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
       return this.resetAnimateIndex()
     } else {
       this.animateIndex[index] = true
+      window.setTimeout(this.playVideo.bind(this,index), 1000)
     }
 
     this.detectChanges()
     // console.log('UAI-1', index, Object.assign([], this.animateIndex))
     window.setTimeout(this.resetAnimateIndex.bind(this, { except: index }), this.bookTransitionDuration * 0.5)
+  }
+
+  playVideo(index: number) {
+    // this.videos
+    let vid = this.videoComponents.get(index)
+    // console.log('playVideo', index, vid)
+    if (vid) vid.play()
+    // console.log('playVideo', index, vid)
   }
 
   resetAnimateIndex(params?) {
@@ -353,9 +383,12 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     // this.shouldFloatInputLabel = Array.from(Array(this.madlibPrompts.length), x => 1)
     // for (const [index, set] of this.randomOptions.entries()) {
 
-    for(var i = 0; i < this.totalWords; i++){
-      this.form.controls[this.controlNameFromIndex(i)].setValue(null)
-    }
+    this.form.reset()
+    // for(var i = 0; i < this.totalWords; i++){
+    //   let ctl = this.form.controls[this.controlNameFromIndex(i)]
+    //   ctl.setValue(null)
+    //   this.form.reset()
+    // }
 
     this.detectChanges()
 

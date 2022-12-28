@@ -1,0 +1,105 @@
+// $font_header: "nyt-cheltenham";
+// $gray_border: 1px solid #e2e2e2;
+// $article_height: calc(100vh - 58px - 30px);
+
+// @import 'book_resources.scss';
+
+:host {
+}
+
+audio {
+  display: inline-block;
+  position: relative;
+  background: transparent;
+}
+
+.audio-controls {
+
+}
+
+.audio-control {
+
+}
+
+.mute-toggle-icon-container {
+  top: 30px;
+  opacity: 0.7;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+}
+
+.mute-toggle-icon {
+  // position: absolute;
+  display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  opacity: 1;
+  transition: 300ms all ease;
+  width: 20px;
+  height: 20px;
+  &.is-hidden { opacity: 0 }
+}
+
+.mute-toggle-icon.is-play {
+  width: 20px;
+}
+
+.mute-toggle-icon.is-pause {
+
+}
+
+.mute-toggle-icon.is-volume {
+  width: 20px;
+}
+
+.mute-toggle-icon.is-mute {
+  width: 24px;
+}
+
+
+
+
+audio::-webkit-media-controls-panel {
+  -webkit-justify-content: center;
+  height: 25px;
+}
+
+/* Removes the timeline */
+audio.no-timeline::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+/* Removes the time stamp */
+audio.no-timestamp::-webkit-media-controls-current-time-display {
+  display: none;
+}
+audio.no-timestamp::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+
+// audio::-webkit-media-controls-panel
+// audio::-webkit-media-controls-mute-button
+// audio::-webkit-media-controls-play-button
+// audio::-webkit-media-controls-timeline-container
+// audio::-webkit-media-controls-current-time-display
+// audio::-webkit-media-controls-time-remaining-display
+// audio::-webkit-media-controls-timeline
+// audio::-webkit-media-controls-volume-slider-container
+// audio::-webkit-media-controls-volume-slider
+// audio::-webkit-media-controls-seek-back-button
+// audio::-webkit-media-controls-seek-forward-button
+// audio::-webkit-media-controls-fullscreen-button
+// audio::-webkit-media-controls-rewind-button
+// audio::-webkit-media-controls-return-to-realtime-button
+// audio::-webkit-media-controls-toggle-closed-captions-button
+
+// video::-webkit-media-controls-fullscreen-button {}
+// video::-webkit-media-controls-play-button {}
+// video::-webkit-media-controls-timeline {}
+// video::-webkit-media-controls-current-time-display{}
+// video::-webkit-media-controls-time-remaining-display {}
+// video::-webkit-media-controls-mute-button {}
+// video::-webkit-media-controls-toggle-closed-captions-button {}
+// video::-webkit-media-controls-volume-slider {}

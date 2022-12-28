@@ -1,14 +1,20 @@
 
-import { ChangeDetectorRef,
+import { AfterViewInit,
+         ChangeDetectorRef,
          Component,
          ElementRef,
          // EventEmitter
          Input,
+         OnChanges,
          // Output,
          OnInit,
          // OnChanges,
          OnDestroy,
          ViewChild } from '@angular/core'
+
+
+// Importing video.js
+// import videojs from 'video.js'
 
 // import { PageService } from 'src/app/_core/index'
 
@@ -16,20 +22,27 @@ import { ChangeDetectorRef,
   moduleId: module.id,
   selector: 'ss-video',
   templateUrl: 'video.component.html',
-  // styleUrls: ['book.component.scss']
+  styleUrls: ['video.component.scss']
 })
 
-export class VideoComponent implements OnInit, OnDestroy {
+export class VideoComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
-  // name = "Angular";
+  // name = "Angular"
 
-  @Input('ssSrc') src: string
+  @Input('ssSrc') src: any
 
   @ViewChild("videoPlayer", { static: false }) videoplayer: ElementRef;
+  // @ViewChild("videoPlayer", { static: false }) videoplayer: ElementRef;
 
-  isPlay: boolean = false
+
+  isPlaying: boolean = false
   width = "640px"
   height = "267px"
+
+  srcWEBM: string
+  srcMP4: string
+
+  video: any
 
 
   constructor(
@@ -40,44 +53,65 @@ export class VideoComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    // console.log('videoplayer', this.videoplayer)
+    if (this.videoplayer) this.video = this.videoplayer.nativeElement
+  }
+
+  ngOnChanges() {
+    this.update()
+    // console.log('videoplayer', this.videoplayer)
+  }
+
   ngOnDestroy() {
   }
 
-  play(event: any) {
-    this.videoplayer.nativeElement.play();
+  update() {
+    this.srcMP4 = this.src['mp4']
+    this.srcWEBM = this.src['webm']
+    this.detectChanges()
+  }
+
+  public play(evt?: any) {
+    // console.log('PLAYING?', this.video)
+    this.video.play()
+  }
+
+  public pause(evt?: any) {
+    this.video.pause()
+  }
+
+  public restart() {
+    this.video.currentTime = 0
   }
 
   playPause() {
-    var myVideo: any = document.getElementById("my_video_1");
-    if (myVideo.paused) myVideo.play();
-    else myVideo.pause();
+    if (this.video.paused) this.video.play()
+    else this.video.pause()
   }
 
   makeBig() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 560;
+    this.video.width = 560
   }
 
   makeSmall() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 320;
+    this.video.width = 320
   }
 
   makeNormal() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 420;
+    this.video.width = 420
   }
 
   skip(value) {
-    let video: any = document.getElementById("my_video_1");
-    video.currentTime += value;
+    this.video.currentTime += value
   }
 
-  restart() {
-    let video: any = document.getElementById("my_video_1");
-    video.currentTime = 0;
-  }
 
+  handleClickVideo(evt: any) {
+    console.log('clicked-video')
+    // evt.stopPropagation()
+    // console.log('TODO: remove stop Prop')
+  }
 
   detectChanges() {
     if (!this.cdr['destroyed']) this.cdr.detectChanges()
