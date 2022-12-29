@@ -46,20 +46,28 @@
     </div>
 </div>
 
+
+
 <audio
-  #audioPlayer
+  #audioplayer
   autoplay
+  loop
+  *ngIf="silenceDone"
+  id="audioplayer"
   [class.no-timeline]="noTimeline"
   [class.no-timestamp]="noTimestamp">
 
     <source *ngIf="srcWAV" [src]="srcWAV" type="audio/wav" />
     <source *ngIf="srcMP3" [src]="srcMP3" type="audio/mp3" />
 
-  <!-- <p>
-    Your browser does not support HTML audio, but you can still
-    <a [href]="src">Download the Music</a>.
-  </p> -->
 </audio>
+
+<!-- fixes autoplay issues in chrome -->
+<iframe #silence
+  class="silence"
+  src="/assets/audio/500ms-silence.mp3"
+  allow="autoplay">
+</iframe>
 
 
 <ng-template #playIcon>

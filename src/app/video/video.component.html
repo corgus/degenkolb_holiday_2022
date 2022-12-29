@@ -1,6 +1,9 @@
 <video
   #videoPlayer
   width="404"
+  muted
+  playsinline
+  loop
   (click)="handleClickVideo($event)">
 
   <source *ngIf="srcWEBM"

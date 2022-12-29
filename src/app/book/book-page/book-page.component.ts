@@ -79,15 +79,15 @@ export class BookPageComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('book-page')
+    // console.log('book-page')
     this.zIndex = 999 - this.index
     this.update()
     // this.mapOpen$ = this.mapOpenStream()
   }
 
   ngOnChanges(changes) {
-    console.log('BookPageComponent changes', changes)
-    console.log('chg: pageContent', this.pages)
+    // console.log('BookPageComponent changes', changes)
+    // console.log('chg: pageContent', this.pages)
     this.update()
     this.detectChanges()
     // this.mapOpen$ = this.mapOpenStream()

@@ -57,7 +57,7 @@ export class BookCarouselComponent implements OnInit, AfterContentInit, AfterVie
   ) {}
 
   ngOnInit() {
-    console.log('book-page')
+    // console.log('book-page')
     this.update()
     // this.mapOpen$ = this.mapOpenStream()
   }

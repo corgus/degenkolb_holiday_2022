@@ -6,6 +6,7 @@ import { ChangeDetectorRef,
          ElementRef,
          EventEmitter,
          HostBinding,
+         HostListener,
          Input,
          Output,
          OnInit,
@@ -66,6 +67,12 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   @ViewChildren(BookPageComponent) bookPages !: QueryList<BookPageComponent>
   @ViewChildren(VideoComponent) videoComponents !: QueryList<VideoComponent>
 // , { read: ViewContainerRef }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    // this.updateWindow()
+  }
 
   page: number
   indexViewed = 0
@@ -156,10 +163,13 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   logoSrc = '/assets/img/degenkolb-logo.png'
-          // <!-- <ss-video
-          //   [ngClass]="{'is-animated': animateIndex[3] }"
-          //   [ssSrc]="images[3]">
-          // </ss-video> -->
+
+  windowDimensions: any
+  scale: number
+  bookTransform: string
+  bookZoom: number
+
+  isSm: boolean
 
 
   constructor(
@@ -174,6 +184,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
     // this.queryParam$ = this.queryParamStream()
     this.initFormGroup()
+    this.updateWindow()
     this.update()
     this.creditsDataScroll = BookDegHelper.creditsDataScroll
     this.detectChanges()
@@ -228,11 +239,60 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     })
   }
 
+
+  updateWindow() {
+    this.windowDimensions = { height: window.innerHeight, width: window.innerWidth }
+    this.updateScale()
+    this.detectChanges()
+  }
+
+  updateScale() {
+    console.log('updateScale', this.windowDimensions)
+    if (!this.windowDimensions || !this.windowDimensions['height']) return
+    this.scale = this.getScale()
+    let transX = this.getTranslateX()
+    this.bookZoom = parseFloat(this.scale.toFixed(6))
+    // let bt = ""
+    // bt += "scale(" + this.scale.toFixed(6) || 1 + ")"
+    // bt += " translateX(" + transX + ")"
+    window.setTimeout(() => {
+      this.bookTransform = "translateX(" + transX + ")"
+      console.log('bookTrans', this.bookTransform)
+      this.detectChanges()
+    }, 1000)
+  }
+
+  getScale() {
+    let origHeight = 675 // * 1.4
+    let origWidth = 956 // * 1.3
+    let containerRatio = origHeight/origWidth
+    let winHeight = this.windowDimensions['height']
+    let winWidth = this.windowDimensions['width']
+    let scaleHeight =  winHeight * containerRatio > winWidth
+    let scale = scaleHeight ? winHeight / origHeight : winWidth / origWidth
+    // scale = parseFloat(scale.toFixed(6))
+    // if (this.windowDimensions['height']
+        console.log('scale', scale, scaleHeight, winHeight, winWidth)
+
+    if (scale > 1) return 1
+    this.isSm = scale < 1
+    console.log('scale', scale, scaleHeight, winHeight, winWidth)
+    return scale
+  }
+
+  getTranslateX() {
+    if (this.scale > 1) return
+    let val = -1 / this.scale * 250 + 250
+    console.log('translateX', val)
+    return val + "px"
+  }
+
   update() {
     this.resetShouldFloatInputLabel()
     this.detectChanges()
     // this.updateCopyControlText()
   }
+
 
   // updateCopyControlText() {
   //   this.copyControlText = this.isCopyingShareLink ? "Copied" : "Copy Text"
@@ -240,11 +300,11 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
 
   updateFormFromQueryParams(qp: any) {
-    console.log('todo: ufqp', qp, this.form)
+    // console.log('todo: ufqp', qp, this.form)
     if (!qp || !this.form) return
     for (let [key, val] of Object.entries(qp)) {
       let ctl = this.form.controls[key]
-      console.log('kv', key, val, ctl)
+      // console.log('kv', key, val, ctl)
       if (ctl) ctl.setValue(val)
     }
   }

@@ -79,6 +79,12 @@ audio.no-timestamp::-webkit-media-controls-time-remaining-display {
   display: none;
 }
 
+.silence {
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+}
+
 // audio::-webkit-media-controls-panel
 // audio::-webkit-media-controls-mute-button
 // audio::-webkit-media-controls-play-button

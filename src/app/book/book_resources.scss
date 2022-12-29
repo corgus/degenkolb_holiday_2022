@@ -12,28 +12,28 @@ $book_cover_margin_side: 20px;
 $book_cover_inner_sleeve_squeeze: 2px;
 
 
-@font-face {
-  font-family: 'Canterbury';
-  src: url("/assets/fonts/Canterbury/Canterbury.eot?#iefix") format('embedded-opentype'),
-       url("/assets/fonts/Canterbury/Canterbury.ttf") format('truetype')
-}
+// @font-face {
+//   font-family: 'Canterbury';
+//   src: url("/assets/fonts/Canterbury/Canterbury.eot?#iefix") format('embedded-opentype'),
+//        url("/assets/fonts/Canterbury/Canterbury.ttf") format('truetype')
+// }
 
-@font-face {
-  font-family: 'EB_Garamond';
-  src: url("/assets/fonts/EB_Garamond/EBGaramond-VariableFont_wght.eot?#iefix") format('embedded-opentype'),
-       url("/assets/fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format('truetype')
-}
+// @font-face {
+//   font-family: 'EB_Garamond';
+//   src: url("/assets/fonts/EB_Garamond/EBGaramond-VariableFont_wght.eot?#iefix") format('embedded-opentype'),
+//        url("/assets/fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format('truetype')
+// }
 
-@font-face {
-  font-family: 'EB_Garamond_em';
-  src: url("/assets/fonts/EB_Garamond/EBGaramond-Italic-VariableFont_wght.eot?#iefix") format('embedded-opentype'),
-       url("/assets/fonts/EB_Garamond/EBGaramond-Italic-VariableFont_wght.ttf") format('truetype')
-}
+// @font-face {
+//   font-family: 'EB_Garamond_em';
+//   src: url("/assets/fonts/EB_Garamond/EBGaramond-Italic-VariableFont_wght.eot?#iefix") format('embedded-opentype'),
+//        url("/assets/fonts/EB_Garamond/EBGaramond-Italic-VariableFont_wght.ttf") format('truetype')
+// }
 
-.font-default {
-  font-family: 'EB_Garamond', serif !important;
-}
+// .font-default {
+//   font-family: 'EB_Garamond', serif !important;
+// }
 
-.font-canterbury {
-  font-family: 'Canterbury', serif !important;
-}
+// .font-canterbury {
+//   font-family: 'Canterbury', serif !important;
+// }

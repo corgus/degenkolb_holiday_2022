@@ -66,7 +66,7 @@ export class LazyLoaderService {
   compileModule(container: any, mod: any, componentKey?: string): Promise<any> {
     if (!container) return Promise.resolve()
     // return Promise.resolve()
-    console.log('CEM', mod, container)
+    // console.log('compileModule', mod, container)
     return this.compiler.compileModuleAsync(mod).then(moduleFactory => {
     //   // Create a moduleRef, resolve an entry component, create the component
       const moduleRef = moduleFactory.create(this.injector) as any

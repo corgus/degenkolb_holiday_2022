@@ -33,7 +33,7 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
 
   @Input('ssOptions') options: any
 
-  @ViewChild("audioPlayer", { static: false }) audioplayer: ElementRef;
+  @ViewChild("audioplayer", { static: false }) audioplayer: ElementRef;
   // @ViewChild("audioPlayer", { static: false }) audioplayer: ElementRef;
 
 
@@ -56,6 +56,7 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   showControls = true
 
   controls = ['mute-toggle']
+  silenceDone = false
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -67,10 +68,13 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   }
 
   ngAfterViewInit() {
-    if (!this.audioplayer) return
-    this.audio = this.audioplayer.nativeElement
-    this.audio.play()
-    console.log('audio', this.audio, this.audio.controlsList)
+    // if (!this.audioplayer) return
+    // this.audio = this.audioplayer.nativeElement
+    // this.audio.play()
+    // window.setTimeout(this.audio.play.bind(this), 1000)
+    // this.update()
+
+    window.setTimeout( this.handleSilenceDone.bind(this), 1000)
   }
 
   ngOnChanges() {
@@ -81,13 +85,38 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   ngOnDestroy() {
   }
 
+  handleSilenceDone() {
+    this.silenceDone = true
+    this.detectChanges()
+
+    if (!this.audioplayer) return this.findAudioAfterDelay() // { console.warn('no audioplayer?'); return }
+    this.audio = this.audioplayer.nativeElement
+    this.audio.play()
+
+    // console.log('audio', this.audio, this.audio.controlsList)
+
+    this.update()
+  }
+
+  findAudioAfterDelay() {
+    return window.setTimeout(this.findAudioThenPlay.bind(this), 1000)
+  }
+
+  findAudioThenPlay() {
+    this.audio = document.getElementById("audioplayer")
+    // console.log('found', this.audio)
+    if (!this.audio) return this.findAudioAfterDelay()
+    this.audio.play()
+    this.update()
+  }
+
   controlIs(control, test) {
     // console.log('control?', control, test, control === test)
     return control === test
   }
 
   update() {
-    if (!this.options) return
+    if (!this.options) return this.detectChanges()
     this.src = this.options['src']
     this.srcWAV = this.options['srcWAV']
     this.srcMP3 = this.options['srcMP3']
@@ -98,8 +127,13 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   }
 
   handleMuteToggle(evt?) {
+
     this.muteToggled = !this.muteToggled
-    this.muteToggled ? this.pause() : this.play()
+    // this.muteToggled ? this.pause() : this.play()
+    let isPlaying = this.audio && !this.audio.paused
+    isPlaying ? this.pause() : this.play()
+    // this.muteToggled = !isPlaying
+
     this.detectChanges()
   }
 
