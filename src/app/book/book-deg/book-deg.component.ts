@@ -64,6 +64,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   @Input('ssResetPages') resetPages: boolean
   @ContentChildren(BookPageContentComponent) pages !: QueryList<BookPageContentComponent>
   @ViewChild('shareInput') shareInput: ElementRef
+  @ViewChild('audioComponent') audioComponent: AudioComponent
   @ViewChildren(BookPageComponent) bookPages !: QueryList<BookPageComponent>
   @ViewChildren(VideoComponent) videoComponents !: QueryList<VideoComponent>
 // , { read: ViewContainerRef }
@@ -170,6 +171,8 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   bookZoom: number
 
   isSm: boolean
+  isXs: boolean
+  firstPageFlipped: boolean
 
 
   constructor(
@@ -231,7 +234,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
       // console.log('QP - TODO: handle if page_qp > total_pages', qp)
       // this.page = qp['page'] || 1
       this.shareLink = window.location.href; // this.router.url;
-      console.log('sharelink', this.shareLink)
+      // console.log('sharelink', this.shareLink)
       this.updateFormFromQueryParams(qp)
 
       this.detectChanges()
@@ -247,24 +250,21 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   updateScale() {
-    console.log('updateScale', this.windowDimensions)
+    // console.log('updateScale', this.windowDimensions)
     if (!this.windowDimensions || !this.windowDimensions['height']) return
     this.scale = this.getScale()
     let transX = this.getTranslateX()
     this.bookZoom = parseFloat(this.scale.toFixed(6))
-    // let bt = ""
-    // bt += "scale(" + this.scale.toFixed(6) || 1 + ")"
-    // bt += " translateX(" + transX + ")"
     window.setTimeout(() => {
-      this.bookTransform = "translateX(" + transX + ")"
-      console.log('bookTrans', this.bookTransform)
+      // this.bookTransform = "translateX(" + transX + ")"
+      // console.log('bookTrans', this.bookTransform)
       this.detectChanges()
     }, 1000)
   }
 
   getScale() {
-    let origHeight = 675 // * 1.4
-    let origWidth = 956 // * 1.3
+    let origHeight = 675  * 1.4
+    let origWidth = 956  * 1.3
     let containerRatio = origHeight/origWidth
     let winHeight = this.windowDimensions['height']
     let winWidth = this.windowDimensions['width']
@@ -272,18 +272,21 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     let scale = scaleHeight ? winHeight / origHeight : winWidth / origWidth
     // scale = parseFloat(scale.toFixed(6))
     // if (this.windowDimensions['height']
-        console.log('scale', scale, scaleHeight, winHeight, winWidth)
+    // console.log('scale', scale, scaleHeight, winHeight, winWidth)
 
-    if (scale > 1) return 1
     this.isSm = scale < 1
-    console.log('scale', scale, scaleHeight, winHeight, winWidth)
+    this.isXs = scale < 0.8
+    this.detectChanges()
+
+    if (scale > 1.2) return 1.2
+    // console.log('scale', scale, scaleHeight, winHeight, winWidth)
     return scale
   }
 
   getTranslateX() {
     if (this.scale > 1) return
     let val = -1 / this.scale * 250 + 250
-    console.log('translateX', val)
+    // console.log('translateX', val)
     return val + "px"
   }
 
@@ -354,6 +357,8 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   handlePageFlipping(pageIndex) {
+    // console.log('pageFlipping', pageIndex)
+    if (pageIndex === 2) this.handleFirstPageFlip()
     this.isClosedFront = pageIndex === 0;
     this.isClosedBack = pageIndex === this.totalPages;
     this.currentIndex = pageIndex
@@ -361,6 +366,12 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.updateAnimateIndex(imageIndex)
     // console.log('HPF', this.pages.length, imageIndex)
     this.detectChanges()
+  }
+
+  handleFirstPageFlip() {
+    if (this.firstPageFlipped) return
+    this.firstPageFlipped = true
+    this.playAudio()
   }
 
 
@@ -375,6 +386,14 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.detectChanges()
     // console.log('UAI-1', index, Object.assign([], this.animateIndex))
     window.setTimeout(this.resetAnimateIndex.bind(this, { except: index }), this.bookTransitionDuration * 0.5)
+  }
+
+  playAudio() {
+    // this.videos
+    let audio = this.audioComponent
+    // console.log('playVideo', index, vid)
+    // console.log('playAudio', audio)
+    if (audio) audio.play()
   }
 
   playVideo(index: number) {
@@ -412,14 +431,9 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   handleInputChange(evt: any, index: number) {
     this.submitted = false
-    console.log('input-change', evt, this.form, this.form.value, this.word(1), this.word(2))
-
-    // console.log('qpkey', `${qpKey}`)
-    // this.updateQueryParams({`${qpKey}`: `${this.word(index)}`})
+    // console.log('input-change', evt, this.form, this.form.value, this.word(1), this.word(2))
 
     this.updateFormValid()
-    // let params = { ["w" + index + 1]: this.word(index + 1) }
-    // window.setTimeout(this.updateQueryParams.bind(this, params), 100);
     this.shouldFloatInputLabel[index] = evt
     this.detectChanges()
   }
@@ -439,17 +453,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
   handleSelectFormReset() {
-    // this.shouldFloatInputLabel = new Array()
-    // this.shouldFloatInputLabel = Array.from(Array(this.madlibPrompts.length), x => 1)
-    // for (const [index, set] of this.randomOptions.entries()) {
-
     this.form.reset()
-    // for(var i = 0; i < this.totalWords; i++){
-    //   let ctl = this.form.controls[this.controlNameFromIndex(i)]
-    //   ctl.setValue(null)
-    //   this.form.reset()
-    // }
-
     this.detectChanges()
 
     this.updateQueryParamsFromWords()
@@ -477,7 +481,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     this.markAllInputsAsTouched()
     this.isInvalid = true
     this.detectChanges()
-    return console.warn('invalid form...', this.form)
+    return // console.warn('invalid form...', this.form)
   }
 
   handleValid() {
@@ -488,16 +492,12 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   updateQueryParamsFromWords() {
     let qp = {}
-    console.log('form', this.form)
+    // console.log('form', this.form)
     for(var i = 0; i < this.totalWords; i++){
-      // for (let [i, ctl] of Object.keys(this.form.controls).entries()) {
-      // let params = { ["w" + i + 1]: this.word(i + 1) }
-      // console.log('i,ctl', i, ctl)
-      // let wordNumber = parseInt(i)
       let key = this.controlNameFromIndex(i)
       qp[key] = this.word(i + 1)
     }
-    console.log('qp', qp)
+    // console.log('qp', qp)
     // let params = { ["w" + index + 1]: this.word(index + 1) }
     window.setTimeout(this.updateQueryParams.bind(this, qp), 100);
     this.detectChanges()
@@ -530,7 +530,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
 
   handleClickForm($event) {
-    console.log('handleClickForm')
+    // console.log('handleClickForm')
     // $event.preventDefault()
     $event.stopPropagation()
   }
@@ -541,7 +541,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
   handleReplayCredits(evt: any) {
     // evt.preventDefault()
-    console.log('TODO: handleReplayCredits')
+    // console.log('TODO: handleReplayCredits')
     evt.stopPropagation()
     this.isResettingCredits = true
 
@@ -572,7 +572,7 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
 
     // var text = "Example text to appear on clipboard";
     navigator.clipboard.writeText(this.shareLink).then(() => {
-      console.log('Async: Copying to clipboard was successful!');
+      // console.log('Async: Copying to clipboard was successful!');
       this.toggleShareLinkCopied()
     }, function(err) {
       console.error('ERROR: Could not copy text: ', err);
@@ -583,37 +583,14 @@ export class BookDegComponent implements OnInit, AfterContentInit, AfterViewInit
     if (toggle && this.isCopyingShareLink) return
     this.isCopyingShareLink = toggle
 
-    // this.copyControlText = toggle ?
-    // this.updateCopyControlText()
     this.detectChanges()
     if (!toggle) return
-    // if (typeof toggle === 'undefined') toggle = true
-    // this.shareLinkCopied = toggle
     window.setTimeout(this.toggleShareLinkCopied.bind(this, false), 3000)
   }
 
-  // showCopied() {
-  //   if (this.isCopied) return
-  //   this.isCopied = true
-  //   window.setTimeout(() => {
-  //     this.isCopied = false;
-  //     this.detectChanges()
-  //   }, 3000)
-  // }
-
   updateQueryParams(qp = {}): Promise<boolean> {
-    // navigate = true, force = false
-    // if (SpotsagaStatic.objectsAreIdentical(this.queryParamsLocal, qp)) return
-
-    // let navigate = (typeof params['navigate'] === 'boolean') ? params['navigate'] : true
-    // let force = params['force'] || false
-    // let qpl = Object.assign({}, this.queryParamsLocal) // to fix 'Cannot assign to read only property'
-    // this.queryParamsLocal = force ? qp : Object.assign({}, this.queryParamsLocal, qp)
-    // this.queryParamsSubject.next(this.queryParamsLocal)
-    // if (!navigate) return
-    console.warn('>>> uqp', qp)
+    // console.warn('>>> uqp', qp)
     return this.router.navigate([], { queryParams: qp })
-                                      // queryParamsHandling: 'merge' })
   }
 
   detectChanges() {

@@ -47,69 +47,9 @@ export class BookComponent implements OnInit, OnDestroy {
     inner_cover: '/assets/img/book-cover--inner-half.png'
   }
 
-  startPages = [
-    { txt: "cover"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    },
-    { txt: "page 1"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    },
-    { txt: "page 2"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    },
-    { txt: "page 3"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    },
-    { txt: "page 4"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    },
-    { txt: "back"
-      // headline: {
-      //   main: ""
-      // },
-      // byline: "",
-      // snippet: "",
-      // multimedia: []
-    }
-  ]
-
-
   apiKey: any = this.config.articleSearch
-  pages: any = this.startPages
+  pages: any = []
   // resetPages: any = false
-
-  // data: any = {
-  //   apiKey: this.config.articleSearch,
-  //   selected: "",
-  //   articles: this.startPages,
-  //   page: 0,
-  //   resetPages: false
-  // }
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -117,20 +57,12 @@ export class BookComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('book')
     // this.mapOpen$ = this.mapOpenStream()
   }
 
   ngOnDestroy() {
     // if (this.mapOpen$) this.mapOpen$.unsubscribe()
   }
-
-  // mapOpenStream() {
-  //   return this.pageService.mapOpen.subscribe( (open:boolean) => {
-  //     console.log('*TODO*', open)
-  //     this.detectChanges()
-  //   })
-  // }
 
   getPages(url, callback = null) {
     return fetch(url)

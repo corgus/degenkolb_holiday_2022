@@ -7,7 +7,9 @@
   </div>
 
   <div class="deg-header-right">
-    <ss-audio [ssOptions]="audioOptions"></ss-audio>
+    <ss-audio #audioComponent
+      [ssOptions]="audioOptions">
+    </ss-audio>
   </div>
 </div>
 
@@ -364,7 +366,9 @@
               <div class="credits-container-fade is-bottom"></div>
 
               <div class="credits-inner">
-                <div class="credits-fade-container">
+                <div class="credits-fade-container"
+                  [class.is-sm]="!isXs && !!isSm"
+                  [class.is-xs]="!isXs">
                   <ng-container *ngFor="let data of creditsDataScroll">
                     <div class="credits-list-container">
                       <div *ngIf="!data['hide_title']"

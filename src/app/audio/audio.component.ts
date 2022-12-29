@@ -12,12 +12,6 @@ import { AfterViewInit,
          OnDestroy,
          ViewChild } from '@angular/core'
 
-
-// Importing audio.js
-// import audiojs from 'audio.js'
-
-// import { PageService } from 'src/app/_core/index'
-
 @Component({
   moduleId: module.id,
   selector: 'ss-audio',
@@ -27,22 +21,10 @@ import { AfterViewInit,
 
 export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
-  // name = "Angular"
-
-  // @Input('ssSrc') src: any
-
   @Input('ssOptions') options: any
-
   @ViewChild("audioplayer", { static: false }) audioplayer: ElementRef;
-  // @ViewChild("audioPlayer", { static: false }) audioplayer: ElementRef;
-
 
   isPlaying: boolean = false
-  // width = "640px"
-  // height = "267px"
-  // srcWEBM: string
-  // srcMP4: string
-
   audio: any
   src: any
   srcWAV: any
@@ -56,7 +38,9 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   showControls = true
 
   controls = ['mute-toggle']
-  silenceDone = false
+  silenceDone = true
+  shouldPlay: boolean
+  autoplay: boolean
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -68,12 +52,6 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   }
 
   ngAfterViewInit() {
-    // if (!this.audioplayer) return
-    // this.audio = this.audioplayer.nativeElement
-    // this.audio.play()
-    // window.setTimeout(this.audio.play.bind(this), 1000)
-    // this.update()
-
     window.setTimeout( this.handleSilenceDone.bind(this), 1000)
   }
 
@@ -89,9 +67,11 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
     this.silenceDone = true
     this.detectChanges()
 
+
     if (!this.audioplayer) return this.findAudioAfterDelay() // { console.warn('no audioplayer?'); return }
     this.audio = this.audioplayer.nativeElement
-    this.audio.play()
+
+    if (this.autoplay) this.audio.play()
 
     // console.log('audio', this.audio, this.audio.controlsList)
 
@@ -99,14 +79,14 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   }
 
   findAudioAfterDelay() {
-    return window.setTimeout(this.findAudioThenPlay.bind(this), 1000)
+    return window.setTimeout(this.findAudioNow.bind(this), 1000)
   }
 
-  findAudioThenPlay() {
+  findAudioNow() {
     this.audio = document.getElementById("audioplayer")
     // console.log('found', this.audio)
     if (!this.audio) return this.findAudioAfterDelay()
-    this.audio.play()
+    if (this.autoplay) this.audio.play()
     this.update()
   }
 
@@ -122,16 +102,25 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
     this.srcMP3 = this.options['srcMP3']
     this.noTimeline = this.options['timeline'] !== true
     this.noTimestamp = this.options['timestamp'] !== true
+    this.autoplay = !!this.options['autoplay']
     // this.srcWEBM = this.src['webm']
     this.detectChanges()
   }
 
   handleMuteToggle(evt?) {
-
+    if (!this.audio) console.log('no audio...')
     this.muteToggled = !this.muteToggled
+    // console.log('hmt', this.muteToggled, this.shouldPlay, this.muteToggled)
+    if (this.shouldPlay) this.play()
+    if (this.muteToggled) {
+      this.pause()
+    }
     // this.muteToggled ? this.pause() : this.play()
-    let isPlaying = this.audio && !this.audio.paused
-    isPlaying ? this.pause() : this.play()
+
+    // play/pause
+    // let isPlaying = this.audio && !this.audio.paused
+    // isPlaying ? this.pause() : this.play()
+
     // this.muteToggled = !isPlaying
 
     this.detectChanges()
@@ -146,10 +135,13 @@ export class AudioComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   // }
 
   pause() {
+    if (!this.audio) return
     this.audio.pause()
   }
 
   play() {
+    this.shouldPlay = true
+    if (this.muteToggled) return
     this.audio.play()
   }
 

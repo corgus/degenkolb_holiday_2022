@@ -108,7 +108,7 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
 
 
   handleClickVideo(evt: any) {
-    console.log('clicked-video')
+    // console.log('clicked-video')
     // evt.stopPropagation()
     // console.log('TODO: remove stop Prop')
   }

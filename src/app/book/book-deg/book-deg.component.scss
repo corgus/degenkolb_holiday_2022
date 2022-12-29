@@ -7,7 +7,9 @@ $fontSizeSelected: 15px;
 
 $creditsDuration: 40s; // 60s;
 $creditsMarginTop: 400px;
-$creditsScrollTop: 2000px;
+$creditsScrollTop: 2300px;
+$creditsScrollTopSm: 2800px;
+$creditsScrollTopXs: 3200px;
 
 $deg_share_width: 360px;
 $deg_share_height: 40px;
@@ -57,10 +59,13 @@ p {
 
 .deg-book-transform-container {
   transform-origin: top left;
+  margin: 150px auto 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .deg-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 60px;
@@ -68,10 +73,12 @@ p {
   flex: none;
   justify-content: space-between;
   align-items: center;
+  background: white;
   // max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  padding: 20px 30px;
+  padding: 20px 30px 0px 30px;
+  // z-index: 2;
 }
 
 .deg-header-left {
@@ -85,20 +92,15 @@ p {
 }
 
 .deg-header-right {
-  // padding: 30px 0;
-  // flex-grow: 1;
-  // position: relative;
-  // text-align: right;
-
   position: fixed;
   right: 25px;
   top: 20px;
+  z-index: 3;
 
   audio {
     right: 0;
     width: 100px;
     background: transparent;
-
   }
 }
 
@@ -460,6 +462,12 @@ p {
   &.is-animated .credits-inner {
     .credits-fade-container {
       animation-name: animate_credits;
+      &.is-sm {
+        animation-name: animate_credits_sm;
+      }
+      &.is-xs {
+        animation-name: animate_credits_xs;
+      }
     }
 
     .credits-replay-container {
@@ -502,6 +510,28 @@ p {
   // 97% { top: -$creditsScrollTop;
   //        opacity: 0; }
   97% { transform: translateY(-$creditsScrollTop);
+        opacity: 0; }
+}
+
+@keyframes animate_credits_sm {
+  // 0% { transform: translateY($creditsMarginTop);
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  // 97% { top: -$creditsScrollTop;
+  //        opacity: 0; }
+  97% { transform: translateY(-$creditsScrollTopSm);
+        opacity: 0; }
+}
+
+@keyframes animate_credits_xs {
+  // 0% { transform: translateY($creditsMarginTop);
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  // 97% { top: -$creditsScrollTop;
+  //        opacity: 0; }
+  97% { transform: translateY(-$creditsScrollTopXs);
         opacity: 0; }
 }
 
@@ -649,7 +679,7 @@ p {
   }
 }
 
-.is-sm .credits-list-lines {
+.is-sm .credits-list-lines:not(.single-column) {
   column-count: 3;
 }
 

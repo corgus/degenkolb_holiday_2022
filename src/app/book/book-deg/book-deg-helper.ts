@@ -295,6 +295,17 @@ export class BookDegHelper {
               ]
     },
 
+    { category: 'Degenkolb Mexico',
+      lines: [ 'Oscar Abud',
+                'Uriel Galvan',
+                'Oscar Gonzalez',
+                'Hector Martinez',
+                'Luis Pancardo',
+                'Jorge Reyes',
+                'Jose Flores Ruiz',
+                ]
+    },
+
     { category: 'Copy Adaptation',
       lines:  [ "Colette Armstrong",
                 "Giana Stanco",
